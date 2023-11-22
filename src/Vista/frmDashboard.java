@@ -1,6 +1,8 @@
 
 package Vista;
 
+import SubPanels_DashBoard.Inicio;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -38,6 +40,7 @@ public class frmDashboard extends javax.swing.JFrame{
           i.addMouseListener(seleccionMause);
         }
         textosDefault("admin");
+        iniciarMainPanel();
     }   
 
     @SuppressWarnings("unchecked")
@@ -68,6 +71,7 @@ public class frmDashboard extends javax.swing.JFrame{
         setPreferredSize(new java.awt.Dimension(1000, 1000));
 
         MainPanel.setBackground(new java.awt.Color(232, 232, 232));
+        MainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 204));
 
@@ -103,6 +107,8 @@ public class frmDashboard extends javax.swing.JFrame{
                 .addComponent(jLabel5)
                 .addContainerGap(58, Short.MAX_VALUE))
         );
+
+        MainPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 74, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 153));
 
@@ -253,8 +259,11 @@ public class frmDashboard extends javax.swing.JFrame{
                 .addGap(31, 31, 31))
         );
 
+        MainPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Punto de venta");
+        MainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 31, -1, -1));
 
         jPanel6.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -266,38 +275,10 @@ public class frmDashboard extends javax.swing.JFrame{
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 790, Short.MAX_VALUE)
+            .addGap(0, 775, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
-        MainPanel.setLayout(MainPanelLayout);
-        MainPanelLayout.setHorizontalGroup(
-            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainPanelLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        MainPanelLayout.setVerticalGroup(
-            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainPanelLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(MainPanelLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        MainPanel.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 267, 1505, 775));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -307,9 +288,7 @@ public class frmDashboard extends javax.swing.JFrame{
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -384,8 +363,17 @@ public class frmDashboard extends javax.swing.JFrame{
         jLabel3.setText("Bienvenido " + nombreUser);
     }
     
+    public void iniciarMainPanel(){
+     Inicio mainPanel = new Inicio();   
+     mainPanel.setSize(1505,775);
+     mainPanel.setLocation(0,0);
+      
+     jPanel6.removeAll();
+     jPanel6.add(mainPanel, BorderLayout.CENTER);
+      
+    }
+    
      public static void main(String args[]) {
-
         frmDashboard ventana = new frmDashboard();
     }   
     
