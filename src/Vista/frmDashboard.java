@@ -4,7 +4,11 @@
  */
 package Vista;
 
-import SubPanels_DashBoard.Inicio;
+import subPanel_Dashboard.frmInicio;
+import subPanel_Dashboard.frmAlmacen;
+import subPanel_Dashboard.frmCaja;
+import subPanel_Dashboard.frmCompras;
+import subPanel_Dashboard.frmAdministrador;
 import java.awt.BorderLayout;
 
 /**
@@ -42,18 +46,18 @@ public class frmDashboard extends javax.swing.JFrame {
         btnContabilidad = new javax.swing.JButton();
         btnAdministrador = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        jPanelSuperior = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanelCentral = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
         PanelBorder.setBackground(new java.awt.Color(255, 255, 255));
 
-        JPanelMenu.setBackground(new java.awt.Color(0, 102, 204));
+        JPanelMenu.setBackground(new java.awt.Color(0, 51, 102));
 
         Logotipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Logo.png"))); // NOI18N
 
@@ -65,7 +69,7 @@ public class frmDashboard extends javax.swing.JFrame {
         lblNombreLogotipo1.setForeground(new java.awt.Color(255, 255, 255));
         lblNombreLogotipo1.setText("MarketVent");
 
-        btnAlmacen.setBackground(new java.awt.Color(0, 102, 204));
+        btnAlmacen.setBackground(new java.awt.Color(0, 51, 102));
         btnAlmacen.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnAlmacen.setForeground(new java.awt.Color(255, 255, 255));
         btnAlmacen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Almacen.png"))); // NOI18N
@@ -73,8 +77,13 @@ public class frmDashboard extends javax.swing.JFrame {
         btnAlmacen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAlmacen.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAlmacen.setPreferredSize(new java.awt.Dimension(128, 80));
+        btnAlmacen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlmacenActionPerformed(evt);
+            }
+        });
 
-        btnInicio.setBackground(new java.awt.Color(0, 102, 204));
+        btnInicio.setBackground(new java.awt.Color(0, 51, 102));
         btnInicio.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnInicio.setForeground(new java.awt.Color(255, 255, 255));
         btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/home.png"))); // NOI18N
@@ -82,8 +91,13 @@ public class frmDashboard extends javax.swing.JFrame {
         btnInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInicio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnInicio.setPreferredSize(new java.awt.Dimension(128, 80));
+        btnInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioActionPerformed(evt);
+            }
+        });
 
-        btnCompras.setBackground(new java.awt.Color(0, 102, 204));
+        btnCompras.setBackground(new java.awt.Color(0, 51, 102));
         btnCompras.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnCompras.setForeground(new java.awt.Color(255, 255, 255));
         btnCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Compras.png"))); // NOI18N
@@ -91,8 +105,13 @@ public class frmDashboard extends javax.swing.JFrame {
         btnCompras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCompras.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnCompras.setPreferredSize(new java.awt.Dimension(128, 80));
+        btnCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprasActionPerformed(evt);
+            }
+        });
 
-        btnCaja.setBackground(new java.awt.Color(0, 102, 204));
+        btnCaja.setBackground(new java.awt.Color(0, 51, 102));
         btnCaja.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnCaja.setForeground(new java.awt.Color(255, 255, 255));
         btnCaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Caja.png"))); // NOI18N
@@ -100,8 +119,13 @@ public class frmDashboard extends javax.swing.JFrame {
         btnCaja.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCaja.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnCaja.setPreferredSize(new java.awt.Dimension(128, 80));
+        btnCaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCajaActionPerformed(evt);
+            }
+        });
 
-        btnContabilidad.setBackground(new java.awt.Color(0, 102, 204));
+        btnContabilidad.setBackground(new java.awt.Color(0, 51, 102));
         btnContabilidad.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnContabilidad.setForeground(new java.awt.Color(255, 255, 255));
         btnContabilidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Contabilidad.png"))); // NOI18N
@@ -110,7 +134,7 @@ public class frmDashboard extends javax.swing.JFrame {
         btnContabilidad.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnContabilidad.setPreferredSize(new java.awt.Dimension(128, 80));
 
-        btnAdministrador.setBackground(new java.awt.Color(0, 102, 204));
+        btnAdministrador.setBackground(new java.awt.Color(0, 51, 102));
         btnAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnAdministrador.setForeground(new java.awt.Color(255, 255, 255));
         btnAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Administrador.png"))); // NOI18N
@@ -119,8 +143,13 @@ public class frmDashboard extends javax.swing.JFrame {
         btnAdministrador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAdministrador.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAdministrador.setPreferredSize(new java.awt.Dimension(128, 80));
+        btnAdministrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdministradorActionPerformed(evt);
+            }
+        });
 
-        btnCerrarSesion.setBackground(new java.awt.Color(0, 102, 204));
+        btnCerrarSesion.setBackground(new java.awt.Color(0, 51, 102));
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/exit.png"))); // NOI18N
@@ -129,6 +158,11 @@ public class frmDashboard extends javax.swing.JFrame {
         btnCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCerrarSesion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnCerrarSesion.setPreferredSize(new java.awt.Dimension(128, 80));
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout JPanelMenuLayout = new javax.swing.GroupLayout(JPanelMenu);
         JPanelMenu.setLayout(JPanelMenuLayout);
@@ -180,7 +214,7 @@ public class frmDashboard extends javax.swing.JFrame {
                 .addGap(6, 6, 6))
         );
 
-        jPanel1.setBackground(new java.awt.Color(0, 89, 179));
+        jPanelSuperior.setBackground(new java.awt.Color(0, 102, 204));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -194,21 +228,21 @@ public class frmDashboard extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Hoy es dia de mes del año");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelSuperiorLayout = new javax.swing.GroupLayout(jPanelSuperior);
+        jPanelSuperior.setLayout(jPanelSuperiorLayout);
+        jPanelSuperiorLayout.setHorizontalGroup(
+            jPanelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelSuperiorLayout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4))
                 .addContainerGap(837, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanelSuperiorLayout.setVerticalGroup(
+            jPanelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelSuperiorLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
@@ -218,16 +252,16 @@ public class frmDashboard extends javax.swing.JFrame {
                 .addContainerGap(67, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelCentral.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelCentralLayout = new javax.swing.GroupLayout(jPanelCentral);
+        jPanelCentral.setLayout(jPanelCentralLayout);
+        jPanelCentralLayout.setHorizontalGroup(
+            jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelCentralLayout.setVerticalGroup(
+            jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -238,19 +272,19 @@ public class frmDashboard extends javax.swing.JFrame {
             .addGroup(PanelBorderLayout.createSequentialGroup()
                 .addComponent(JPanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelCentral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(PanelBorderLayout.createSequentialGroup()
                 .addGap(339, 339, 339)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelBorderLayout.setVerticalGroup(
             PanelBorderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(JPanelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(PanelBorderLayout.createSequentialGroup()
                 .addGap(240, 240, 240)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelCentral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(PanelBorderLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(560, 560, 560))
         );
 
@@ -268,6 +302,36 @@ public class frmDashboard extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlmacenActionPerformed
+        // TODO add your handling code here:
+        PanelAlmacen();
+    }//GEN-LAST:event_btnAlmacenActionPerformed
+
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+        // TODO add your handling code here:
+        PanelInicio();
+    }//GEN-LAST:event_btnInicioActionPerformed
+
+    private void btnCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCajaActionPerformed
+        // TODO add your handling code here:
+        PanelCaja();
+    }//GEN-LAST:event_btnCajaActionPerformed
+
+    private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed
+        // TODO add your handling code here:
+        PanelCompras();
+    }//GEN-LAST:event_btnComprasActionPerformed
+
+    private void btnAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministradorActionPerformed
+        // TODO add your handling code here:
+        PanelAdministrador();
+    }//GEN-LAST:event_btnAdministradorActionPerformed
+
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,24 +382,66 @@ public class frmDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanelCentral;
+    private javax.swing.JPanel jPanelSuperior;
     private javax.swing.JLabel lblNombreLogotipo;
     private javax.swing.JLabel lblNombreLogotipo1;
     // End of variables declaration//GEN-END:variables
 
-    
-    public void PanelInicio(){
-        Inicio panel = new Inicio();
-        panel.setSize(1130,560);
-        panel.setLocation(0,0);
-        
-        jPanel2.removeAll();
-        jPanel2.add(panel, BorderLayout.CENTER);
-        jPanel2.revalidate();
-        jPanel2.repaint();
+    public void PanelInicio() {
+        frmInicio inicio = new frmInicio();
+        inicio.setSize(1130, 560);
+        inicio.setLocation(0, 0);
+
+        jPanelCentral.removeAll();
+        jPanelCentral.add(inicio, BorderLayout.CENTER);
+        jPanelCentral.revalidate();
+        jPanelCentral.repaint();
+    }
+
+    public void PanelAlmacen() {
+        frmAlmacen almacen = new frmAlmacen();
+        almacen.setSize(1130, 560);
+        almacen.setLocation(0, 0);
+
+        jPanelCentral.removeAll();
+        jPanelCentral.add(almacen, BorderLayout.CENTER);
+        jPanelCentral.revalidate();
+        jPanelCentral.repaint();
+    }
+
+    public void PanelCaja() {
+        frmCaja caja = new frmCaja();
+        caja.setSize(1130, 560);
+        caja.setLocation(0, 0);
+
+        jPanelCentral.removeAll();
+        jPanelCentral.add(caja, BorderLayout.CENTER);
+        jPanelCentral.revalidate();
+        jPanelCentral.repaint();
     }
     
-    
-    
+        public void PanelCompras() {
+        frmCompras compras = new frmCompras();
+        compras.setSize(1130, 560);
+        compras.setLocation(0, 0);
+
+        jPanelCentral.removeAll();
+        jPanelCentral.add(compras, BorderLayout.CENTER);
+        jPanelCentral.revalidate();
+        jPanelCentral.repaint();
+    }
+        
+            
+        public void PanelAdministrador() {
+        frmAdministrador administrador = new frmAdministrador();
+        administrador.setSize(1130, 560);
+        administrador.setLocation(0, 0);
+
+        jPanelCentral.removeAll();
+        jPanelCentral.add(administrador, BorderLayout.CENTER);
+        jPanelCentral.revalidate();
+        jPanelCentral.repaint();
+    }
+
 }
