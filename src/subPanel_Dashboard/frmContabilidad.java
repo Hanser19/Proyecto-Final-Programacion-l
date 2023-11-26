@@ -8,12 +8,12 @@ package subPanel_Dashboard;
  *
  * @author Hanser Perez
  */
-public class frmAlmacen extends javax.swing.JPanel {
+public class frmContabilidad extends javax.swing.JPanel {
 
     /**
      * Creates new form frmAlmacen
      */
-    public frmAlmacen() {
+    public frmContabilidad() {
         initComponents();
     }
 
@@ -30,9 +30,9 @@ public class frmAlmacen extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         JPanelCentral = new javax.swing.JPanel();
-        btnArticulos = new javax.swing.JButton();
-        btnConsulta = new javax.swing.JButton();
-        btnCategorias = new javax.swing.JButton();
+        btnIngresos = new javax.swing.JButton();
+        btnBalance = new javax.swing.JButton();
+        btnGastos = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1130, 560));
@@ -78,24 +78,24 @@ public class frmAlmacen extends javax.swing.JPanel {
 
         JPanelCentral.setBackground(new java.awt.Color(0, 102, 204));
 
-        btnArticulos.setBackground(new java.awt.Color(0, 102, 204));
-        btnArticulos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnArticulos.setForeground(new java.awt.Color(255, 255, 255));
-        btnArticulos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Articulos.png"))); // NOI18N
-        btnArticulos.setText("Articulos");
-        btnArticulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIngresos.setBackground(new java.awt.Color(0, 102, 204));
+        btnIngresos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnIngresos.setForeground(new java.awt.Color(255, 255, 255));
+        btnIngresos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Articulos.png"))); // NOI18N
+        btnIngresos.setText("Ingresos");
+        btnIngresos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        btnConsulta.setBackground(new java.awt.Color(0, 102, 204));
-        btnConsulta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnConsulta.setForeground(new java.awt.Color(255, 255, 255));
-        btnConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Consulta.png"))); // NOI18N
-        btnConsulta.setText("Consulta");
+        btnBalance.setBackground(new java.awt.Color(0, 102, 204));
+        btnBalance.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnBalance.setForeground(new java.awt.Color(255, 255, 255));
+        btnBalance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Consulta.png"))); // NOI18N
+        btnBalance.setText("Balance general");
 
-        btnCategorias.setBackground(new java.awt.Color(0, 102, 204));
-        btnCategorias.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnCategorias.setForeground(new java.awt.Color(255, 255, 255));
-        btnCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Categoria.png"))); // NOI18N
-        btnCategorias.setText("Categorias");
+        btnGastos.setBackground(new java.awt.Color(0, 102, 204));
+        btnGastos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnGastos.setForeground(new java.awt.Color(255, 255, 255));
+        btnGastos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Categoria.png"))); // NOI18N
+        btnGastos.setText("Gastos");
 
         javax.swing.GroupLayout JPanelCentralLayout = new javax.swing.GroupLayout(JPanelCentral);
         JPanelCentral.setLayout(JPanelCentralLayout);
@@ -103,11 +103,11 @@ public class frmAlmacen extends javax.swing.JPanel {
             JPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPanelCentralLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(btnArticulos, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addComponent(btnCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
-                .addComponent(btnConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
         JPanelCentralLayout.setVerticalGroup(
@@ -115,9 +115,9 @@ public class frmAlmacen extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelCentralLayout.createSequentialGroup()
                 .addContainerGap(82, Short.MAX_VALUE)
                 .addGroup(JPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnArticulos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(67, 67, 67))
         );
 
@@ -154,9 +154,9 @@ public class frmAlmacen extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPanelCentral;
-    private javax.swing.JButton btnArticulos;
-    private javax.swing.JButton btnCategorias;
-    private javax.swing.JButton btnConsulta;
+    private javax.swing.JButton btnBalance;
+    private javax.swing.JButton btnGastos;
+    private javax.swing.JButton btnIngresos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

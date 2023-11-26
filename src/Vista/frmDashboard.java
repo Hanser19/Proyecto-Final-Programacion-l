@@ -10,6 +10,7 @@ import subPanel_Dashboard.frmCaja;
 import subPanel_Dashboard.frmCompras;
 import subPanel_Dashboard.frmAdministrador;
 import java.awt.BorderLayout;
+import subPanel_Dashboard.frmContabilidad;
 
 /**
  *
@@ -133,6 +134,11 @@ public class frmDashboard extends javax.swing.JFrame {
         btnContabilidad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnContabilidad.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnContabilidad.setPreferredSize(new java.awt.Dimension(128, 80));
+        btnContabilidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContabilidadActionPerformed(evt);
+            }
+        });
 
         btnAdministrador.setBackground(new java.awt.Color(0, 51, 102));
         btnAdministrador.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -333,6 +339,18 @@ public class frmDashboard extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
+    private void btnContabilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContabilidadActionPerformed
+       frmContabilidad panel = new frmContabilidad();
+       panel.setSize(1130,560);
+       panel.setLocation(0, 0);
+       
+       jPanelCentral.removeAll();
+       jPanelCentral.add(panel, BorderLayout.CENTER);
+       jPanelCentral.revalidate();
+        jPanelCentral.repaint();
+       
+    }//GEN-LAST:event_btnContabilidadActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -363,7 +381,7 @@ public class frmDashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PantallaCarga.frmPantallaCarga(null, true).setVisible(true);
+               // new PantallaCarga.frmPantallaCarga(null, true).setVisible(true);
                 new frmDashboard().setVisible(true);
             }
         });

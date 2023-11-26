@@ -4,6 +4,9 @@
  */
 package subPanel_Dashboard;
 
+import Vista.frmDashboard;
+import vista.SubFramesCaja.Venta;
+
 /**
  *
  * @author Juan Manuel
@@ -83,7 +86,7 @@ public class frmCaja extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHabilitarCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHabilitarCajaActionPerformed
-        // TODO add your handling code here:
+         Venta ventana = new Venta();
     }//GEN-LAST:event_btnHabilitarCajaActionPerformed
 
     private void jComboBoxCajasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCajasActionPerformed
@@ -101,4 +104,6 @@ public class frmCaja extends javax.swing.JPanel {
     private javax.swing.JLabel lblClave;
     private javax.swing.JTextField txtContraseña;
     // End of variables declaration//GEN-END:variables
+
 }
+
