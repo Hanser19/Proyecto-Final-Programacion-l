@@ -355,7 +355,12 @@ public class Venta extends javax.swing.JFrame {
             }
         });
 
-        btnGuardar.setText("Guardar");
+        btnGuardar.setText("Vender");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
 
@@ -661,6 +666,10 @@ public class Venta extends javax.swing.JFrame {
         // TODO add your handling code here:
         frmVentasDiarias ventana = new frmVentasDiarias();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+       frmRealizarVenta ventana = new frmRealizarVenta();
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
