@@ -4,13 +4,13 @@
  */
 package Vista;
 
-import subPanel_Dashboard.frmInicio;
-import subPanel_Dashboard.frmAlmacen;
-import subPanel_Dashboard.frmCaja;
-import subPanel_Dashboard.frmCompras;
-import subPanel_Dashboard.frmAdministrador;
+import Vista.subPanelDashboard.frmInicio;
+import Vista.subPanelDashboard.frmAlmacen;
+import Vista.subPanelDashboard.frmCaja;
+import Vista.subPanelDashboard.frmCompras;
+import Vista.subPanelDashboard.frmAdministrador;
 import java.awt.BorderLayout;
-import subPanel_Dashboard.frmContabilidad;
+import Vista.subPanelDashboard.frmContabilidad;
 
 /**
  *
