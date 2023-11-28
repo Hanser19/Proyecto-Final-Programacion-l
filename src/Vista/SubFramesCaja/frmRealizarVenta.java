@@ -4,6 +4,8 @@
  */
 package Vista.SubFramesCaja;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Juan Manuel
@@ -15,6 +17,9 @@ public class frmRealizarVenta extends javax.swing.JFrame {
      */
     public frmRealizarVenta() {
         initComponents();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
