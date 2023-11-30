@@ -8,12 +8,12 @@ package folder;
  *
  * @author Juan Manuel
  */
-public class SubPanelCaja extends javax.swing.JPanel {
+public class subPanelCaja extends javax.swing.JPanel {
 
     /**
      * Creates new form SubPanelfecha
      */
-    public SubPanelCaja() {
+    public subPanelCaja() {
         initComponents();
     }
 
