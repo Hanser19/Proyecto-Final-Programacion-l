@@ -4,6 +4,11 @@
  */
 package Vista.subPanelDashboard;
 
+import Vista.subFormCompras.frmVerProveedores;
+import Vista.subFormContabilidad.BalanceGeneral;
+import Vista.subFormGastos.frmGastos;
+import Vista.subFormGastos.frmIngresos;
+
 /**
  *
  * @author Hanser Perez
@@ -84,18 +89,33 @@ public class frmContabilidad extends javax.swing.JPanel {
         btnIngresos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Articulos.png"))); // NOI18N
         btnIngresos.setText("Ingresos");
         btnIngresos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIngresos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresosActionPerformed(evt);
+            }
+        });
 
         btnBalance.setBackground(new java.awt.Color(0, 102, 204));
         btnBalance.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnBalance.setForeground(new java.awt.Color(255, 255, 255));
         btnBalance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Consulta.png"))); // NOI18N
         btnBalance.setText("Balance general");
+        btnBalance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBalanceActionPerformed(evt);
+            }
+        });
 
         btnGastos.setBackground(new java.awt.Color(0, 102, 204));
         btnGastos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnGastos.setForeground(new java.awt.Color(255, 255, 255));
         btnGastos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Categoria.png"))); // NOI18N
         btnGastos.setText("Gastos");
+        btnGastos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGastosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout JPanelCentralLayout = new javax.swing.GroupLayout(JPanelCentral);
         JPanelCentral.setLayout(JPanelCentralLayout);
@@ -151,6 +171,21 @@ public class frmContabilidad extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnIngresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresosActionPerformed
+
+        DesplegarIngresos();
+    }//GEN-LAST:event_btnIngresosActionPerformed
+
+    private void btnBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBalanceActionPerformed
+
+        DesplegarBalanceGeneral();
+
+    }//GEN-LAST:event_btnBalanceActionPerformed
+
+    private void btnGastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGastosActionPerformed
+        DesplegarGastos();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGastosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPanelCentral;
@@ -161,4 +196,28 @@ public class frmContabilidad extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
+
+    static void DesplegarBalanceGeneral() {
+
+        BalanceGeneral balance = new BalanceGeneral();
+        balance.pack();
+        balance.setVisible(true);
+        balance.setLocationRelativeTo(null);
+    }
+
+    static void DesplegarGastos() {
+
+        frmGastos gastos = new frmGastos();
+        gastos.pack();
+        gastos.setVisible(true);
+        gastos.setLocationRelativeTo(null);
+    }
+
+    static void DesplegarIngresos() {
+
+        frmIngresos ingresos = new frmIngresos();
+        ingresos.pack();
+        ingresos.setVisible(true);
+        ingresos.setLocationRelativeTo(null);
+    }
 }

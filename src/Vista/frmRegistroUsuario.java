@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vista;
 
-/**
- *
- * @author Hanser Perez
- */
+import Modelo.Usuarios;
+import Modelo.UsuarioDAO;
+import javax.swing.JOptionPane;
+import Controlador.ControladorRegistro;
+
 public class frmRegistroUsuario extends javax.swing.JFrame {
 
     /**
@@ -33,11 +30,15 @@ public class frmRegistroUsuario extends javax.swing.JFrame {
         lblRegistro = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        lblContraseña = new javax.swing.JLabel();
-        txtContraseña = new javax.swing.JPasswordField();
-        btnAcceder = new javax.swing.JButton();
+        lblRol = new javax.swing.JLabel();
+        btnRegistrar = new javax.swing.JButton();
         lblCuentaCreada = new javax.swing.JLabel();
         btnIniciarSesion = new javax.swing.JButton();
+        lblContraseña = new javax.swing.JLabel();
+        txtContraseña = new javax.swing.JPasswordField();
+        jComboBoxRol = new javax.swing.JComboBox<>();
+        txtConfirmarContraseña = new javax.swing.JPasswordField();
+        lblContraseña1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro");
@@ -57,20 +58,20 @@ public class frmRegistroUsuario extends javax.swing.JFrame {
         PanelLogoLayout.setHorizontalGroup(
             PanelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelLogoLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(59, 59, 59)
                 .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         PanelLogoLayout.setVerticalGroup(
             PanelLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelLogoLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(64, 64, 64)
                 .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         PanelPrincipal.add(PanelLogo);
-        PanelLogo.setBounds(0, 0, 360, 470);
+        PanelLogo.setBounds(0, 0, 370, 450);
 
         PanelLateral.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -87,16 +88,17 @@ public class frmRegistroUsuario extends javax.swing.JFrame {
             }
         });
 
-        lblContraseña.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        lblContraseña.setText("Contraseña");
+        lblRol.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblRol.setText("Rol");
 
-        btnAcceder.setBackground(new java.awt.Color(0, 0, 102));
-        btnAcceder.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAcceder.setForeground(new java.awt.Color(255, 255, 255));
-        btnAcceder.setText("Acceder");
-        btnAcceder.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrar.setBackground(new java.awt.Color(0, 0, 102));
+        btnRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrar.setText("Acceder");
+        btnRegistrar.setActionCommand("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAccederActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
             }
         });
 
@@ -110,55 +112,77 @@ public class frmRegistroUsuario extends javax.swing.JFrame {
             }
         });
 
+        lblContraseña.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblContraseña.setText("Confirmar Contraseña");
+
+        jComboBoxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cajero" }));
+
+        lblContraseña1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblContraseña1.setText("Contraseña");
+
         javax.swing.GroupLayout PanelLateralLayout = new javax.swing.GroupLayout(PanelLateral);
         PanelLateral.setLayout(PanelLateralLayout);
         PanelLateralLayout.setHorizontalGroup(
             PanelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLateralLayout.createSequentialGroup()
-                .addContainerGap(155, Short.MAX_VALUE)
+                .addContainerGap(153, Short.MAX_VALUE)
                 .addComponent(lblRegistro)
-                .addGap(103, 103, 103))
+                .addGap(125, 125, 125))
+            .addGroup(PanelLateralLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(lblCuentaCreada, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnIniciarSesion)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(PanelLateralLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(PanelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtConfirmarContraseña, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jComboBoxRol, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtContraseña, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtUsuario)
-                    .addComponent(txtContraseña)
                     .addGroup(PanelLateralLayout.createSequentialGroup()
                         .addGroup(PanelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelLateralLayout.createSequentialGroup()
-                                .addComponent(lblCuentaCreada, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnIniciarSesion))
+                            .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblContraseña1)
                             .addComponent(lblContraseña)
-                            .addComponent(lblUsuario)
-                            .addComponent(btnAcceder, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblRol)
+                            .addComponent(lblUsuario))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         PanelLateralLayout.setVerticalGroup(
             PanelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelLateralLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(7, 7, 7)
                 .addComponent(lblRegistro)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(lblRol)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxRol, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblContraseña1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblContraseña)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtConfirmarContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnAcceder, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PanelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCuentaCreada)
                     .addComponent(btnIniciarSesion))
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
         );
 
         PanelPrincipal.add(PanelLateral);
-        PanelLateral.setBounds(360, 0, 400, 500);
+        PanelLateral.setBounds(360, 0, 420, 450);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,19 +192,37 @@ public class frmRegistroUsuario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(PanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
-    private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAccederActionPerformed
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+
+        ControladorRegistro registroController = new ControladorRegistro();
+
+        String usuario = txtUsuario.getText();
+        char[] contrasena = txtContraseña.getPassword();
+        char[] confirmarContrasena = txtConfirmarContraseña.getPassword();
+        String rolSeleccionado = (String) jComboBoxRol.getSelectedItem();
+
+        registroController.registrarUsuario(usuario, contrasena, confirmarContrasena, rolSeleccionado);
+
+        limpiar();
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    public void limpiar() {
+
+        txtUsuario.setText("");
+        txtContraseña.setText("");
+        txtConfirmarContraseña.setText("");
+    }
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         // TODO add your handling code here:
@@ -221,17 +263,22 @@ public class frmRegistroUsuario extends javax.swing.JFrame {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelLateral;
     private javax.swing.JPanel PanelLogo;
     private javax.swing.JPanel PanelPrincipal;
-    private javax.swing.JButton btnAcceder;
     private javax.swing.JButton btnIniciarSesion;
+    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JComboBox<String> jComboBoxRol;
     private javax.swing.JLabel lblContraseña;
+    private javax.swing.JLabel lblContraseña1;
     private javax.swing.JLabel lblCuentaCreada;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblRegistro;
+    private javax.swing.JLabel lblRol;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JPasswordField txtConfirmarContraseña;
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

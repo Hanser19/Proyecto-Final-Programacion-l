@@ -4,15 +4,14 @@
  */
 package Vista;
 
+import Controlador.ControladorLogin;
 
 public class frmLogin extends javax.swing.JFrame {
 
-   
     public frmLogin() {
         initComponents();
     }
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -169,6 +168,7 @@ public class frmLogin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
@@ -180,14 +180,19 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContraseñaActionPerformed
 
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
-        // TODO add your handling code here:
+
+        ControladorLogin loginController = new ControladorLogin();
+
+        String usuario = txtUsuario.getText();
+        char[] contrasena = txtContraseña.getPassword();
+
+        loginController.IniciarSesion(usuario, contrasena);
     }//GEN-LAST:event_btnAccederActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-       
+
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

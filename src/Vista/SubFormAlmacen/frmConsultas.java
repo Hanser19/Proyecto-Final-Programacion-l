@@ -4,6 +4,9 @@
  */
 package folder;
 
+import Vista.subPanelDashboard.frmInicio;
+import java.awt.BorderLayout;
+
 /**
  *
  * @author Hanser Perez
@@ -28,7 +31,7 @@ public class frmConsultas extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        JPanelContenedor = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -38,18 +41,18 @@ public class frmConsultas extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuVentas = new javax.swing.JMenu();
+        jMenuItemFecha = new javax.swing.JMenuItem();
+        jMenuItemCaja = new javax.swing.JMenuItem();
+        jMenuItemEmpleado = new javax.swing.JMenuItem();
+        jMenuItemProducto = new javax.swing.JMenuItem();
+        jMenuCompras = new javax.swing.JMenu();
+        jMenuCompraFecha = new javax.swing.JMenuItem();
+        jMenuCompraEmpleado = new javax.swing.JMenuItem();
+        jMenuCompraProveedor = new javax.swing.JMenuItem();
+        jMenuCompraProducto = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1470, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -159,46 +162,46 @@ public class frmConsultas extends javax.swing.JFrame {
             .addGap(0, 129, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout JPanelContenedorLayout = new javax.swing.GroupLayout(JPanelContenedor);
+        JPanelContenedor.setLayout(JPanelContenedorLayout);
+        JPanelContenedorLayout.setHorizontalGroup(
+            JPanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelContenedorLayout.createSequentialGroup()
+                .addGroup(JPanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPanelContenedorLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(334, 334, 334)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(JPanelContenedorLayout.createSequentialGroup()
                         .addGap(344, 344, 344)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(JPanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPanelContenedorLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 448, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(JPanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(109, 109, 109))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(JPanelContenedorLayout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        JPanelContenedorLayout.setVerticalGroup(
+            JPanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanelContenedorLayout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(JPanelContenedorLayout.createSequentialGroup()
+                .addGroup(JPanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPanelContenedorLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(JPanelContenedorLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(14, 14, 14)
@@ -208,7 +211,7 @@ public class frmConsultas extends javax.swing.JFrame {
                 .addGap(31, 31, 31))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1470, 540));
+        getContentPane().add(JPanelContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1470, 540));
 
         jPanel3.setBackground(new java.awt.Color(0, 51, 102));
 
@@ -222,63 +225,103 @@ public class frmConsultas extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addContainerGap()
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(1339, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 652, 1470, -1));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 652, 1470, 50));
 
         jMenuBar1.setBackground(new java.awt.Color(0, 51, 102));
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jMenuBar1.setPreferredSize(new java.awt.Dimension(157, 60));
 
-        jMenu1.setText("Ventas");
+        jMenuVentas.setText("Ventas");
 
-        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem1.setText("Fecha");
-        jMenu1.add(jMenuItem1);
+        jMenuItemFecha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItemFecha.setText("Fecha");
+        jMenuItemFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemFechaActionPerformed(evt);
+            }
+        });
+        jMenuVentas.add(jMenuItemFecha);
 
-        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem2.setText("Caja");
-        jMenu1.add(jMenuItem2);
+        jMenuItemCaja.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItemCaja.setText("Caja");
+        jMenuItemCaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCajaActionPerformed(evt);
+            }
+        });
+        jMenuVentas.add(jMenuItemCaja);
 
-        jMenuItem3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem3.setText("Empleado");
-        jMenu1.add(jMenuItem3);
+        jMenuItemEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItemEmpleado.setText("Empleado");
+        jMenuItemEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemEmpleadoActionPerformed(evt);
+            }
+        });
+        jMenuVentas.add(jMenuItemEmpleado);
 
-        jMenuItem4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem4.setText("Producto");
-        jMenu1.add(jMenuItem4);
+        jMenuItemProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItemProducto.setText("Producto");
+        jMenuItemProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemProductoActionPerformed(evt);
+            }
+        });
+        jMenuVentas.add(jMenuItemProducto);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenuVentas);
 
-        jMenu2.setText("Compras");
+        jMenuCompras.setText("Compras");
 
-        jMenuItem5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem5.setText("Fecha");
-        jMenu2.add(jMenuItem5);
+        jMenuCompraFecha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuCompraFecha.setText("Fecha");
+        jMenuCompraFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuCompraFechaActionPerformed(evt);
+            }
+        });
+        jMenuCompras.add(jMenuCompraFecha);
 
-        jMenuItem6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem6.setText("Empleado");
-        jMenu2.add(jMenuItem6);
+        jMenuCompraEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuCompraEmpleado.setText("Empleado");
+        jMenuCompraEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuCompraEmpleadoActionPerformed(evt);
+            }
+        });
+        jMenuCompras.add(jMenuCompraEmpleado);
 
-        jMenuItem7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem7.setText("Proveedor");
-        jMenu2.add(jMenuItem7);
+        jMenuCompraProveedor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuCompraProveedor.setText("Proveedor");
+        jMenuCompraProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuCompraProveedorActionPerformed(evt);
+            }
+        });
+        jMenuCompras.add(jMenuCompraProveedor);
 
-        jMenuItem8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem8.setText("Producto");
-        jMenu2.add(jMenuItem8);
+        jMenuCompraProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuCompraProducto.setText("Producto");
+        jMenuCompraProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuCompraProductoActionPerformed(evt);
+            }
+        });
+        jMenuCompras.add(jMenuCompraProducto);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenuCompras);
 
         setJMenuBar(jMenuBar1);
 
@@ -286,26 +329,59 @@ public class frmConsultas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jMenuItemFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFechaActionPerformed
+        PanelFecha();
+    }//GEN-LAST:event_jMenuItemFechaActionPerformed
+
+    private void jMenuItemEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEmpleadoActionPerformed
+        PanelEmpleado();
+    }//GEN-LAST:event_jMenuItemEmpleadoActionPerformed
+
+    private void jMenuItemCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCajaActionPerformed
+        PanelCaja();
+    }//GEN-LAST:event_jMenuItemCajaActionPerformed
+
+    private void jMenuItemProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemProductoActionPerformed
+        PanelProducto();
+    }//GEN-LAST:event_jMenuItemProductoActionPerformed
+
+    private void jMenuCompraFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCompraFechaActionPerformed
+        PanelFecha();
+    }//GEN-LAST:event_jMenuCompraFechaActionPerformed
+
+    private void jMenuCompraEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCompraEmpleadoActionPerformed
+        PanelEmpleado();
+
+    }//GEN-LAST:event_jMenuCompraEmpleadoActionPerformed
+
+    private void jMenuCompraProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCompraProveedorActionPerformed
+        PanelProveedores();
+    }//GEN-LAST:event_jMenuCompraProveedorActionPerformed
+
+    private void jMenuCompraProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCompraProductoActionPerformed
+        PanelProducto();
+    }//GEN-LAST:event_jMenuCompraProductoActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel JPanelContenedor;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuCompraEmpleado;
+    private javax.swing.JMenuItem jMenuCompraFecha;
+    private javax.swing.JMenuItem jMenuCompraProducto;
+    private javax.swing.JMenuItem jMenuCompraProveedor;
+    private javax.swing.JMenu jMenuCompras;
+    private javax.swing.JMenuItem jMenuItemCaja;
+    private javax.swing.JMenuItem jMenuItemEmpleado;
+    private javax.swing.JMenuItem jMenuItemFecha;
+    private javax.swing.JMenuItem jMenuItemProducto;
+    private javax.swing.JMenu jMenuVentas;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -315,4 +391,63 @@ public class frmConsultas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     // End of variables declaration//GEN-END:variables
 
+    public void PanelCaja() {
+
+        subPanelCaja caja = new subPanelCaja();
+        caja.setSize(1470, 540);
+        caja.setLocation(0, 0);
+
+        JPanelContenedor.removeAll();
+        JPanelContenedor.add(caja, BorderLayout.CENTER);
+        JPanelContenedor.revalidate();
+        JPanelContenedor.repaint();
+    }
+
+    public void PanelEmpleado() {
+
+        subPanelEmpleado empleado = new subPanelEmpleado();
+        empleado.setSize(1470, 540);
+        empleado.setLocation(0, 0);
+
+        JPanelContenedor.removeAll();
+        JPanelContenedor.add(empleado, BorderLayout.CENTER);
+        JPanelContenedor.revalidate();
+        JPanelContenedor.repaint();
+    }
+
+    public void PanelProducto() {
+
+        subPanelProducto producto = new subPanelProducto();
+        producto.setSize(1470, 540);
+        producto.setLocation(0, 0);
+
+        JPanelContenedor.removeAll();
+        JPanelContenedor.add(producto, BorderLayout.CENTER);
+        JPanelContenedor.revalidate();
+        JPanelContenedor.repaint();
+    }
+
+    public void PanelProveedores() {
+
+        subPanelProveedores proveedores = new subPanelProveedores();
+        proveedores.setSize(1470, 540);
+        proveedores.setLocation(0, 0);
+
+        JPanelContenedor.removeAll();
+        JPanelContenedor.add(proveedores, BorderLayout.CENTER);
+        JPanelContenedor.revalidate();
+        JPanelContenedor.repaint();
+    }
+
+    public void PanelFecha() {
+
+        subPanelfecha fecha = new subPanelfecha();
+        fecha.setSize(1470, 540);
+        fecha.setLocation(0, 0);
+
+        JPanelContenedor.removeAll();
+        JPanelContenedor.add(fecha, BorderLayout.CENTER);
+        JPanelContenedor.revalidate();
+        JPanelContenedor.repaint();
+    }
 }

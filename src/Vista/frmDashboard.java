@@ -340,15 +340,15 @@ public class frmDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnContabilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContabilidadActionPerformed
-       frmContabilidad panel = new frmContabilidad();
-       panel.setSize(1130,560);
-       panel.setLocation(0, 0);
-       
-       jPanelCentral.removeAll();
-       jPanelCentral.add(panel, BorderLayout.CENTER);
-       jPanelCentral.revalidate();
+        frmContabilidad panel = new frmContabilidad();
+        panel.setSize(1130, 560);
+        panel.setLocation(0, 0);
+
+        jPanelCentral.removeAll();
+        jPanelCentral.add(panel, BorderLayout.CENTER);
+        jPanelCentral.revalidate();
         jPanelCentral.repaint();
-       
+
     }//GEN-LAST:event_btnContabilidadActionPerformed
 
     /**
@@ -381,7 +381,6 @@ public class frmDashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               // new PantallaCarga.frmPantallaCarga(null, true).setVisible(true);
                 new frmDashboard().setVisible(true);
             }
         });
@@ -439,8 +438,8 @@ public class frmDashboard extends javax.swing.JFrame {
         jPanelCentral.revalidate();
         jPanelCentral.repaint();
     }
-    
-        public void PanelCompras() {
+
+    public void PanelCompras() {
         frmCompras compras = new frmCompras();
         compras.setSize(1130, 560);
         compras.setLocation(0, 0);
@@ -450,9 +449,8 @@ public class frmDashboard extends javax.swing.JFrame {
         jPanelCentral.revalidate();
         jPanelCentral.repaint();
     }
-        
-            
-        public void PanelAdministrador() {
+
+    public void PanelAdministrador() {
         frmAdministrador administrador = new frmAdministrador();
         administrador.setSize(1130, 560);
         administrador.setLocation(0, 0);

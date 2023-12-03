@@ -6,6 +6,8 @@ package PantallaCarga;
 
 import java.awt.Color;
 import javax.swing.JDialog;
+import Vista.frmDashboard;
+import Vista.frmLogin;
 
 /**
  *
@@ -17,6 +19,7 @@ public class frmPantallaCarga extends javax.swing.JDialog {
      * Creates new form PantallaCarga
      */
     public frmPantallaCarga(java.awt.Frame parent, boolean modal) {
+
         super(parent, modal);
         initComponents();
         getContentPane().setBackground(new Color(221, 221, 221));
@@ -105,7 +108,7 @@ public class frmPantallaCarga extends javax.swing.JDialog {
             @Override
             public void run() {
                 try {
-                    doTask("Conectando a la base de datos...", 10);
+                    doTask("Conectando a la base de datos...", 5);
                     doTask("Tarea 1...", 20);
                     doTask("Tarea 2...", 30);
                     doTask("Tarea 3...", 40);
@@ -118,6 +121,7 @@ public class frmPantallaCarga extends javax.swing.JDialog {
                     doTask("Completado...", 100);
                     dispose();
                     curvesPanel1.stop();
+                    new frmDashboard().setVisible(true);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -129,7 +133,7 @@ public class frmPantallaCarga extends javax.swing.JDialog {
 
     private void doTask(String taskName, int progress) throws Exception {
         lblEstado.setText(taskName);
-        Thread.sleep(500);
+        Thread.sleep(250);
         barraProgreso.setValue(progress);
     }
 
@@ -182,4 +186,8 @@ public class frmPantallaCarga extends javax.swing.JDialog {
     private PantallaCarga.CurvesPanel curvesPanel1;
     private javax.swing.JLabel lblEstado;
     // End of variables declaration//GEN-END:variables
+
+    public void Dasboard() {
+        frmDashboard dash = new frmDashboard();
+    }
 }

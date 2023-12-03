@@ -57,7 +57,7 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
 
         jButton10.setText("Actualizar");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
 

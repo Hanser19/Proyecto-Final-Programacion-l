@@ -4,6 +4,10 @@
  */
 package Vista.subPanelDashboard;
 
+import Vista.SubFormAlmacen.frmArticulos;
+import Vista.subFormAlmacen.frmCategoriaAlmacen;
+import folder.frmConsultas;
+
 /**
  *
  * @author Hanser Perez
@@ -84,18 +88,33 @@ public class frmAlmacen extends javax.swing.JPanel {
         btnArticulos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Articulos.png"))); // NOI18N
         btnArticulos.setText("Articulos");
         btnArticulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnArticulos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnArticulosActionPerformed(evt);
+            }
+        });
 
         btnConsulta.setBackground(new java.awt.Color(0, 102, 204));
         btnConsulta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnConsulta.setForeground(new java.awt.Color(255, 255, 255));
         btnConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Consulta.png"))); // NOI18N
         btnConsulta.setText("Consulta");
+        btnConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaActionPerformed(evt);
+            }
+        });
 
         btnCategorias.setBackground(new java.awt.Color(0, 102, 204));
         btnCategorias.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnCategorias.setForeground(new java.awt.Color(255, 255, 255));
         btnCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Categoria.png"))); // NOI18N
         btnCategorias.setText("Categorias");
+        btnCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCategoriasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout JPanelCentralLayout = new javax.swing.GroupLayout(JPanelCentral);
         JPanelCentral.setLayout(JPanelCentralLayout);
@@ -151,6 +170,19 @@ public class frmAlmacen extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArticulosActionPerformed
+        DesplegarArticulos();
+    }//GEN-LAST:event_btnArticulosActionPerformed
+
+    private void btnCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriasActionPerformed
+        DesplegarCategorias();
+    }//GEN-LAST:event_btnCategoriasActionPerformed
+
+    private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
+        // TODO add your handling code here:
+        DesplegarConsultas();
+    }//GEN-LAST:event_btnConsultaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPanelCentral;
@@ -161,4 +193,28 @@ public class frmAlmacen extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
+
+    static void DesplegarArticulos() {
+        
+        frmArticulos articulos = new frmArticulos();
+        articulos.pack();
+        articulos.setVisible(true);
+        articulos.setLocationRelativeTo(null);
+    }
+
+    static void DesplegarCategorias() {
+        
+        frmCategoriaAlmacen categoria = new frmCategoriaAlmacen();
+        categoria.pack();
+        categoria.setVisible(true);
+        categoria.setLocationRelativeTo(null);        
+    }
+    
+        static void DesplegarConsultas() {
+        
+        frmConsultas consultas = new frmConsultas();
+        consultas.pack();
+        consultas.setVisible(true);
+        consultas.setLocationRelativeTo(null);        
+    }
 }

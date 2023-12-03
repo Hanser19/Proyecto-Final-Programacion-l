@@ -4,6 +4,10 @@
  */
 package Vista.subPanelDashboard;
 
+import Vista.SubFormAlmacen.frmArticulos;
+import Vista.subFormCompras.Compra;
+import Vista.subFormCompras.frmVerProveedores;
+
 /**
  *
  * @author Juan Manuel
@@ -82,6 +86,11 @@ public class frmCompras extends javax.swing.JPanel {
         btnProovedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Provedor.png"))); // NOI18N
         btnProovedores.setText("Proveedores");
         btnProovedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProovedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProovedoresActionPerformed(evt);
+            }
+        });
 
         btnComprar.setBackground(new java.awt.Color(0, 102, 204));
         btnComprar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -89,6 +98,11 @@ public class frmCompras extends javax.swing.JPanel {
         btnComprar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Comprar.png"))); // NOI18N
         btnComprar.setText("Comprar");
         btnComprar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout JPanelCentralLayout = new javax.swing.GroupLayout(JPanelCentral);
         JPanelCentral.setLayout(JPanelCentralLayout);
@@ -141,6 +155,15 @@ public class frmCompras extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+        DesplegarCompras();
+
+    }//GEN-LAST:event_btnComprarActionPerformed
+
+    private void btnProovedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProovedoresActionPerformed
+        DesplegarProveedores();
+    }//GEN-LAST:event_btnProovedoresActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPanelCentral;
@@ -150,4 +173,20 @@ public class frmCompras extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
+
+    static void DesplegarCompras() {
+
+        Compra compra = new Compra();
+        compra.pack();
+        compra.setVisible(true);
+        compra.setLocationRelativeTo(null);
+    }
+
+    static void DesplegarProveedores() {
+
+        frmVerProveedores proveedores = new frmVerProveedores();
+        proveedores.pack();
+        proveedores.setVisible(true);
+        proveedores.setLocationRelativeTo(null);
+    }
 }

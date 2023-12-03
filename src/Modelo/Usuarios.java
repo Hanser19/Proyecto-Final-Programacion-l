@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
 
 /**
@@ -9,22 +5,43 @@ package Modelo;
  * @author Carlos
  */
 public class Usuarios {
-    public String Usuario;
-    public String Contraseña;
+    
+    private int id;
+    private String usuario;
+    private String contrasena;
+    private String rol;
+
+    public int getId() {
+        return id;
+    }
 
     public String getUsuario() {
-        return Usuario;
+        return usuario;
     }
 
-    public void setUsuario(String Usuario) {
-        this.Usuario = Usuario;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public String getContraseña() {
-        return Contraseña;
+    public String getRol() {
+        return rol;
     }
 
-    public void setContraseña(String Contraseña) {
-        this.Contraseña = Contraseña;
+    public void setId(int id) {
+        this.id = id;
     }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+    
+    
 }
