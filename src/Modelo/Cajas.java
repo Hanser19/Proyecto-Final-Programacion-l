@@ -25,6 +25,10 @@ public class Cajas {
         return Estado;
     }
 
+    public Cajas(int Caja_Num) {
+        this.Caja_Num = Caja_Num;
+    }
+
     public void setEstado(String Estado) {
         this.Estado = Estado;
     }
@@ -45,4 +49,5 @@ public class Cajas {
         this.Caja_EmpID = Caja_EmpID;
     }
     public int Caja_EmpID;
+    
 }
