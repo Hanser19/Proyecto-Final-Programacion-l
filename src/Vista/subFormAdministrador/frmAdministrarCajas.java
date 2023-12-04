@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista.subFormAdministrador;
-import Controlador.Insert;
+import Modelo.Program;
+import static Modelo.Program.setCajas;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Hanser Perez
@@ -227,7 +229,11 @@ public class frmAdministrarCajas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarClientesActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       Insert.insertarCaja(Integer.parseInt(jTable1.getValueAt(0, 0).toString()));
+     if(jTable1.getValueAt(0,0) != null){
+      int num = Integer.parseInt(jTable1.getValueAt(0,0).toString());
+      setCajas(num); 
+     }
+     else JOptionPane.showMessageDialog(this, "Ingresar el numero de la nueva caja", "Alerta", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

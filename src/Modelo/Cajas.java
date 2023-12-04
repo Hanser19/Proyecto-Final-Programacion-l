@@ -4,14 +4,27 @@
  */
 package Modelo;
 
+import Controlador.ConexionSQL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author cajor
  */
-public class Cajas {
-    public int Caja_ID;
-    public String Estado;
-    public int Caja_Num;
+public class Cajas extends ConexionSQL{
+    private int Caja_ID;
+    private String Estado;
+    private int Caja_Num;
+    private int Caja_EmpID;
+    
+    public Cajas(int Caja_Num) {
+        this.Caja_Num = Caja_Num;
+        insert();
+    }
 
     public int getCaja_ID() {
         return Caja_ID;
@@ -23,10 +36,6 @@ public class Cajas {
 
     public String getEstado() {
         return Estado;
-    }
-
-    public Cajas(int Caja_Num) {
-        this.Caja_Num = Caja_Num;
     }
 
     public void setEstado(String Estado) {
@@ -48,6 +57,23 @@ public class Cajas {
     public void setCaja_EmpID(int Caja_EmpID) {
         this.Caja_EmpID = Caja_EmpID;
     }
-    public int Caja_EmpID;
     
+   @Override
+    public void insert() {
+        String query = "INSERT INTO Cajas(Numero) VALUES(?)";
+
+        try {
+           stm = getConection().prepareStatement(query);
+            
+           stm.setInt(1, Caja_Num);
+            
+           stm.executeUpdate();
+           System.out.print("Se agrego la caja correctamente");        
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(getConection(), stm);
+        }
+    }
 }

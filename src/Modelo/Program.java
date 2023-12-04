@@ -4,7 +4,6 @@
  */
 package Modelo;
 
-import java.awt.List;
 import java.util.ArrayList;
 
 /**
@@ -12,5 +11,10 @@ import java.util.ArrayList;
  * @author Juan Manuel
  */
 public class Program {
- 
+    private static ArrayList<Cajas> cajas = new ArrayList<Cajas>();
+    
+    
+    public static void setCajas(int num){
+        cajas.add(new Cajas(num));
+    }
 }
