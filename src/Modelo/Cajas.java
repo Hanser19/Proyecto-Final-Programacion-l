@@ -5,11 +5,13 @@
 package Modelo;
 
 import Controlador.ConexionSQL;
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,10 +22,13 @@ public class Cajas extends ConexionSQL{
     private String Estado;
     private int Caja_Num;
     private int Caja_EmpID;
+    private static String query;
+
     
     public Cajas(int Caja_Num) {
         this.Caja_Num = Caja_Num;
         insert();
+        
     }
 
     public int getCaja_ID() {
@@ -60,7 +65,7 @@ public class Cajas extends ConexionSQL{
     
    @Override
     public void insert() {
-        String query = "INSERT INTO Cajas(Numero) VALUES(?)";
+        query = "INSERT INTO Cajas(Numero) VALUES(?)";
 
         try {
            stm = getConection().prepareStatement(query);
@@ -75,5 +80,25 @@ public class Cajas extends ConexionSQL{
         } finally {
             close(getConection(), stm);
         }
+    }
+
+    public static  ArrayList<Integer> getNumerosCajas() {
+        
+        ArrayList<Integer> numeros = new ArrayList<>();
+        query = "SELECT Numero FROM Cajas";
+        
+        try{
+            stm = getConection().prepareStatement(query);
+            resultSet = stm.executeQuery();
+            
+            while(resultSet.next()){
+                numeros.add(resultSet.getInt("Numero"));
+            }
+            return numeros;
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return numeros;
     }
 }

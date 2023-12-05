@@ -13,8 +13,17 @@ import java.util.ArrayList;
 public class Program {
     private static ArrayList<Cajas> cajas = new ArrayList<Cajas>();
     
-    
     public static void setCajas(int num){
         cajas.add(new Cajas(num));
+    }
+    
+    public static boolean VerificarNumCaja(int num){
+        ArrayList<Integer> numeros = Cajas.getNumerosCajas();
+        for(int i: numeros){
+            if(i == num){
+                return false;
+            }
+        }
+        return true;
     }
 }

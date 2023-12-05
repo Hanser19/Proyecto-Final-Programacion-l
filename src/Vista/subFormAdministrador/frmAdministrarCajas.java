@@ -4,7 +4,10 @@
  */
 package Vista.subFormAdministrador;
 import Modelo.Program;
+import static Modelo.Program.VerificarNumCaja;
 import static Modelo.Program.setCajas;
+import Modelo.Cajas;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 /**
  *
@@ -148,6 +151,11 @@ public class frmAdministrarCajas extends javax.swing.JFrame {
 
         jButton3.setText("Eliminar");
         jButton3.setPreferredSize(new java.awt.Dimension(150, 30));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Actualizar");
         jButton4.setPreferredSize(new java.awt.Dimension(150, 30));
@@ -231,10 +239,16 @@ public class frmAdministrarCajas extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
      if(jTable1.getValueAt(0,0) != null){
       int num = Integer.parseInt(jTable1.getValueAt(0,0).toString());
-      setCajas(num); 
+      if(VerificarNumCaja(num)){
+        setCajas(num);
+      }else JOptionPane.showMessageDialog(this, "EL numero de caja ya exciste", "Alerta", JOptionPane.INFORMATION_MESSAGE);
      }
      else JOptionPane.showMessageDialog(this, "Ingresar el numero de la nueva caja", "Alerta", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,23 +5,25 @@ import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public abstract class ConexionSQL {
     
-    private  String driver = "com.mysql.cj.jdbc.Driver";
-    private  String hostName = "LocalHost";
-    private  String port = "3306";
-    private  String DBName = "provisional";
+    private static String driver = "com.mysql.cj.jdbc.Driver";
+    private static String hostName = "LocalHost";
+    private static String port = "3306";
+    private static String DBName = "provisional";
     
-    private  String url = "jdbc:mysql://" + hostName + ":" + port + "/" + DBName + "?useSSL=false";
+    private static String url = "jdbc:mysql://" + hostName + ":" + port + "/" + DBName + "?useSSL=false";
     
-    private  String userName = "root";
-    private  String password = "admin";
+    private static String userName = "root";
+    private static String password = "admin";
     
-    private Connection conn;
-    protected PreparedStatement stm;
+    private static Connection conn;
+    protected static PreparedStatement stm;
+    protected static ResultSet resultSet;
     
-    public Connection getConection() {
+    public static Connection getConection() {
         try {
             Class.forName(driver);
             conn = DriverManager.getConnection(url, userName, password);
