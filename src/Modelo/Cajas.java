@@ -5,11 +5,6 @@
 package Modelo;
 
 import Controlador.ConexionSQL;
-import java.awt.List;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -17,26 +12,22 @@ import java.util.ArrayList;
  *
  * @author cajor
  */
-public class Cajas extends ConexionSQL{
+public final class Cajas extends ConexionSQL {
+
     private int Caja_ID;
     private String Estado;
     private int Caja_Num;
     private int Caja_EmpID;
     private static String query;
 
-    
     public Cajas(int Caja_Num) {
         this.Caja_Num = Caja_Num;
         insert();
-        
+        asignarId();
     }
 
     public int getCaja_ID() {
         return Caja_ID;
-    }
-
-    public void setCaja_ID(int Caja_ID) {
-        this.Caja_ID = Caja_ID;
     }
 
     public String getEstado() {
@@ -62,43 +53,140 @@ public class Cajas extends ConexionSQL{
     public void setCaja_EmpID(int Caja_EmpID) {
         this.Caja_EmpID = Caja_EmpID;
     }
-    
-   @Override
-    public void insert() {
+
+    @Override
+    protected void insert() {
         query = "INSERT INTO Cajas(Numero) VALUES(?)";
 
         try {
-           stm = getConection().prepareStatement(query);
-            
-           stm.setInt(1, Caja_Num);
-            
-           stm.executeUpdate();
-           System.out.print("Se agrego la caja correctamente");        
-            
+            stm = getConection().prepareStatement(query);
+
+            stm.setInt(1, Caja_Num);
+
+            stm.executeUpdate();
+            System.out.print("Se agrego la caja correctamente");
+
         } catch (SQLException e) {
-            e.printStackTrace();
         } finally {
             close(getConection(), stm);
         }
     }
 
-    public static  ArrayList<Integer> getNumerosCajas() {
-        
-        ArrayList<Integer> numeros = new ArrayList<>();
-        query = "SELECT Numero FROM Cajas";
-        
-        try{
+    public static ArrayList<String[]> select() {
+        ArrayList<String[]> datos = new ArrayList<>();
+        query = "SELECT CajaID,Numero from Cajas";
+
+        try {
+
             stm = getConection().prepareStatement(query);
             resultSet = stm.executeQuery();
-            
-            while(resultSet.next()){
+
+            while (resultSet.next()) {
+                String[] filas = new String[2];
+                filas[0] = resultSet.getString("CajaID");
+                filas[1] = resultSet.getString("Numero");
+                datos.add(filas);
+            }
+        } catch (SQLException e) {
+        } finally {
+            close(getConection(), stm);
+        }
+        return datos;
+    }
+
+    public static ArrayList<Integer> getNumerosCajas() {
+
+        ArrayList<Integer> numeros = new ArrayList<>();
+        query = "SELECT Numero FROM Cajas";
+
+        try {
+            stm = getConection().prepareStatement(query);
+            resultSet = stm.executeQuery();
+
+            while (resultSet.next()) {
                 numeros.add(resultSet.getInt("Numero"));
             }
-            return numeros;
-        }catch(SQLException e){
-            e.printStackTrace();
+        } catch (SQLException e) {
+        } finally {
+            close(getConection(), stm);
         }
-        
+
         return numeros;
+    }
+
+    private void asignarId() {
+        query = "select CajaID from Cajas WHERE Numero = ?";
+
+        try {
+            stm = getConection().prepareStatement(query);
+            stm.setInt(1, Caja_Num);
+            resultSet = stm.executeQuery();
+            while (resultSet.next()) {
+                this.Caja_ID = resultSet.getInt("CajaID");
+            }
+        } catch (SQLException e) {
+        } finally {
+            close(getConection(), stm);
+            System.out.println("se agrego id correctamente el id es: " + this.Caja_ID);
+        }
+    }
+
+    public static void Delete(int id) {
+        query = "DELETE FROM Cajas WHERE CajaID = ?";
+
+        try {
+            stm = getConection().prepareStatement(query);
+            stm.setInt(1, id);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+        } finally {
+            close(getConection(), stm);
+            System.out.println("Caja eliminada correctamente");
+        }
+    }
+
+    public static String[] getCajaPorFiltro(int numero, int index) {
+        String[] fila = new String[2];
+        query = "Select * from Cajas where Numero = ?";
+
+        if (index == 0) {
+            query = "Select * from Cajas where CajaID = ?";
+        } else {
+            query = "Select * from Cajas where Numero = ?";
+        }
+
+        try {
+            stm = getConection().prepareStatement(query);
+            stm.setInt(1, numero);
+
+            resultSet = stm.executeQuery();
+
+            while (resultSet.next()) {
+                fila[0] = resultSet.getString("CajaID");
+                fila[1] = resultSet.getString("Numero");
+            }
+        } catch (SQLException e) {
+        } finally {
+            close(getConection(), stm);
+        }
+        return fila;
+    }
+
+    public static void update(int id, String numeroC) {
+        query = "UPDATE Cajas SET Numero = ? WHERE CajaID = ?";
+
+        try {
+            stm = getConection().prepareStatement(query);
+
+            stm.setString(1, numeroC);
+            stm.setInt(2, id);
+
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(getConection(), stm);
+            System.out.println("Caja Actualizada correctamente correctamente");
+        }
     }
 }

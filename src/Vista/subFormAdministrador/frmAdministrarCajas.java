@@ -3,12 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista.subFormAdministrador;
-import Modelo.Program;
+
+import Modelo.JtableModel;
+import static Modelo.JtableModel.ModeloBuscarCajaFiltro;
 import static Modelo.Program.VerificarNumCaja;
 import static Modelo.Program.setCajas;
-import Modelo.Cajas;
-import java.util.ArrayList;
+import static Modelo.Program.deleteCaja;
+import static Modelo.Program.updateCaja;
+import javax.swing.DefaultCellEditor;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Hanser Perez
@@ -64,7 +69,7 @@ public class frmAdministrarCajas extends javax.swing.JFrame {
         });
 
         ComboBoxBuscar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        ComboBoxBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nombre" }));
+        ComboBoxBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Numero de caja" }));
         ComboBoxBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxBuscarActionPerformed(evt);
@@ -140,6 +145,11 @@ public class frmAdministrarCajas extends javax.swing.JFrame {
 
         jButton1.setText("Nuevo");
         jButton1.setPreferredSize(new java.awt.Dimension(150, 30));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Guardar");
         jButton2.setPreferredSize(new java.awt.Dimension(150, 30));
@@ -159,6 +169,11 @@ public class frmAdministrarCajas extends javax.swing.JFrame {
 
         jButton4.setText("Actualizar");
         jButton4.setPreferredSize(new java.awt.Dimension(150, 30));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelInferiorLayout = new javax.swing.GroupLayout(jPanelInferior);
         jPanelInferior.setLayout(jPanelInferiorLayout);
@@ -233,56 +248,79 @@ public class frmAdministrarCajas extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboBoxBuscarActionPerformed
 
     private void btnBuscarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClientesActionPerformed
-        // TODO add your handling code here:
+        String filtro = textBuscar.getText();
+        int numero = 0;
+        /*filtro para buscar por filtro o general*/
+        if (filtro.isEmpty()) {
+            jTable1.setModel(JtableModel.ModeloBuscarCajas());
+        } else {
+            try {
+                numero = Integer.parseInt(textBuscar.getText());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Ingresar un valor valido", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            }
+            jTable1.setModel(ModeloBuscarCajaFiltro(numero,ComboBoxBuscar.getSelectedIndex()));
+        }
     }//GEN-LAST:event_btnBuscarClientesActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     if(jTable1.getValueAt(0,0) != null){
-      int num = Integer.parseInt(jTable1.getValueAt(0,0).toString());
-      if(VerificarNumCaja(num)){
-        setCajas(num);
-      }else JOptionPane.showMessageDialog(this, "EL numero de caja ya exciste", "Alerta", JOptionPane.INFORMATION_MESSAGE);
-     }
-     else JOptionPane.showMessageDialog(this, "Ingresar el numero de la nueva caja", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        if (jTable1.getColumnCount() == 1) {
+            if (jTable1.getValueAt(0, 0) != null) {
+                if (VerificarNumCaja(ObtenerNumCaja())) {
+                    setCajas(ObtenerNumCaja());
+                } else {
+                    JOptionPane.showMessageDialog(this, "EL numero de caja ya exciste", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Ingresar el numero de la nueva caja", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else
+            JOptionPane.showMessageDialog(this, "Debes primero precionar el boton de nuevo", "Alerta", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    
+        String[] filaSeleccionada = new String[2];
+        if (jTable1.getColumnCount() == 2) {
+            if (jTable1.getSelectedRow() != -1) {
+                for (int i = 0; i < filaSeleccionada.length; i++) {
+                    filaSeleccionada[i] = jTable1.getValueAt(jTable1.getSelectedRow(), i).toString();
+                }
+                deleteCaja(filaSeleccionada);
+            } else {
+                JOptionPane.showMessageDialog(this, "primero debes seleccionar una caja", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else
+            JOptionPane.showMessageDialog(this, "primero debes buscar la caja a eliminar", "Alerta", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmAdministrarCajas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmAdministrarCajas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmAdministrarCajas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmAdministrarCajas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jTable1.setValueAt(null, 0, 0);
+        jTable1.setModel(JtableModel.ModeloNuevaCaja());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmAdministrarCajas().setVisible(true);
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        String[] filaSeleccionada = new String[2];
+        if (jTable1.getRowCount() == 1 && jTable1.getColumnCount() == 2) {
+            if (jTable1.getSelectedRow() != -1) {
+                for (int i = 0; i < filaSeleccionada.length; i++) {
+                    filaSeleccionada[i] = jTable1.getValueAt(jTable1.getSelectedRow(), i).toString();
+                }
+                updateCaja(filaSeleccionada);
+            } else {
+                JOptionPane.showMessageDialog(this, "primero debes seleccionar una caja", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             }
-        });
+        } else
+            JOptionPane.showMessageDialog(this, "primero debes buscar la caja a eliminar", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private int ObtenerNumCaja() {
+        int num = 0;
+        try {
+            num = Integer.parseInt(jTable1.getValueAt(0, 0).toString());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingresar un valor valido", "Problemas de conversion", JOptionPane.INFORMATION_MESSAGE);
+        }
+        return num;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

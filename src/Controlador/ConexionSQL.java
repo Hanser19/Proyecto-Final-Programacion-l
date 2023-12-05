@@ -9,15 +9,15 @@ import java.sql.ResultSet;
 
 public abstract class ConexionSQL {
     
-    private static String driver = "com.mysql.cj.jdbc.Driver";
-    private static String hostName = "LocalHost";
-    private static String port = "3306";
-    private static String DBName = "provisional";
+    private static final String driver = "com.mysql.cj.jdbc.Driver";
+    private static final String hostName = "LocalHost";
+    private static final String port = "3306";
+    private static final String DBName = "provisional";
     
-    private static String url = "jdbc:mysql://" + hostName + ":" + port + "/" + DBName + "?useSSL=false";
+    private static final String url = "jdbc:mysql://" + hostName + ":" + port + "/" + DBName + "?useSSL=false";
     
-    private static String userName = "root";
-    private static String password = "admin";
+    private static final String userName = "root";
+    private static final String password = "admin";
     
     private static Connection conn;
     protected static PreparedStatement stm;
@@ -32,7 +32,6 @@ public abstract class ConexionSQL {
             }
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Conexion fallida");
-            e.printStackTrace();
         }
         return conn;
     }
@@ -41,14 +40,15 @@ public abstract class ConexionSQL {
         try {
             if (statement != null) {
                 statement.close();
+                System.out.println("Stm cerrado correctamente");
             }
             if (connection != null) {
-                connection.close();
+                try (connection) {
+                    System.out.println("Conexcion cerrado correctamente");
+                }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
-
-    public abstract void insert();
+    protected abstract void insert();
 }
