@@ -13,7 +13,6 @@ import java.util.ArrayList;
  * @author cajor
  */
 public final class Cajas extends ConexionSQL {
-
     private int Caja_ID;
     private String Estado;
     private int Caja_Num;
@@ -147,7 +146,6 @@ public final class Cajas extends ConexionSQL {
 
     public static String[] getCajaPorFiltro(int numero, int index) {
         String[] fila = new String[2];
-        query = "Select * from Cajas where Numero = ?";
 
         if (index == 0) {
             query = "Select * from Cajas where CajaID = ?";

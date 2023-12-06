@@ -10,42 +10,94 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Juan Manuel
  */
-public class JtableModel{
+public class JtableModel {
 
     private static DefaultTableModel modelo;
-    
-    public static DefaultTableModel ModeloBuscarCajas(){
-        
+
+    public static DefaultTableModel ModeloBuscarCajas() {
+
         modelo = new DefaultTableModel();
-        
+
         modelo.addColumn("ID");
         modelo.addColumn("Numero de caja");
-        
-        for(String[] i: Cajas.select()){
-           modelo.addRow(i);
+
+        for (String[] i : Cajas.select()) {
+            modelo.addRow(i);
         }
-        
+
         return modelo;
     }
-    
-    public static DefaultTableModel ModeloNuevaCaja(){
-        
+
+    public static DefaultTableModel ModeloNuevaCaja() {
+
         modelo = new DefaultTableModel();
-        
+
         modelo.addColumn("Numero de caja");
+        modelo.addRow(new Object[]{});
+
+        return modelo;
+    }
+
+    public static DefaultTableModel ModeloBuscarCajaFiltro(int numero, int index) {
+        modelo = new DefaultTableModel();
+
+        modelo.addColumn("ID");
+        modelo.addColumn("Numero de caja");
+
+        modelo.addRow(Cajas.getCajaPorFiltro(numero, index));
+
+        return modelo;
+    }
+
+    public static DefaultTableModel ModeloBuscarProducto() {
+        modelo = new DefaultTableModel();
+
+        modelo.addColumn("ID");
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Unidades");
+        modelo.addColumn("Precio de venta");
+        modelo.addColumn("Precio de compra");
+        modelo.addColumn("CategoriaID");
+        modelo.addColumn("SuplidorID");
+
+        for (String[] i : Productos.select()) {
+            modelo.addRow(i);
+        }
+
+        return modelo;
+    }
+
+    public static DefaultTableModel ModeloNuevoProducto() {
+        modelo = new DefaultTableModel();
+
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Precio de venta");
+        modelo.addColumn("Precio de compra");
+        modelo.addColumn("CategoriaID");
+        modelo.addColumn("SuplidorID");
+
         modelo.addRow(new Object[]{});
         
         return modelo;
     }
     
-    public static DefaultTableModel ModeloBuscarCajaFiltro(int numero, int index){
+     public static DefaultTableModel ModeloBuscarProductoFiltro(int numero, int index) {
         modelo = new DefaultTableModel();
-        
+
         modelo.addColumn("ID");
-        modelo.addColumn("Numero de caja");
-        
-        modelo.addRow(Cajas.getCajaPorFiltro(numero, index));
-        
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Unidades");
+        modelo.addColumn("Precio de venta");
+        modelo.addColumn("Precio de compra");
+        modelo.addColumn("CategoriaID");
+        modelo.addColumn("SuplidorID");
+
+        modelo.addRow(Productos.getProductoPorFiltro(numero, index));
+
         return modelo;
     }
+
 }

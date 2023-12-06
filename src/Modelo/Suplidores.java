@@ -4,16 +4,28 @@
  */
 package Modelo;
 
+import Controlador.ConexionSQL;
+import static Controlador.ConexionSQL.close;
+import static Controlador.ConexionSQL.getConection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
  * @author cajor
  */
-public class Suplidores {
+public class Suplidores extends ConexionSQL {
+
     public int Sup_ID;
     public String Sup_Nombre;
     public String Sup_Direccion;
     public String Sup_Ciudad;
     public String Sup_Pais;
+    public int Sup_Telefono;
+    public String Sup_Correo;
+    public String Sup_Pag_Web;
+    public int Sup_RNC;
+    private static String query;
 
     public int getSup_ID() {
         return Sup_ID;
@@ -86,8 +98,29 @@ public class Suplidores {
     public void setSup_RNC(int Sup_RNC) {
         this.Sup_RNC = Sup_RNC;
     }
-    public int Sup_Telefono;
-    public String Sup_Correo;
-    public String Sup_Pag_Web;
-    public int Sup_RNC;
+
+    @Override
+    protected void insert() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public static ArrayList<Integer> getIDSuplidores() {
+        ArrayList<Integer> numeros = new ArrayList<>();
+        query = "SELECT SuplidorID FROM Suplidores";
+
+        try {
+            stm = getConection().prepareStatement(query);
+            resultSet = stm.executeQuery();
+
+            while (resultSet.next()) {
+                numeros.add(resultSet.getInt("SuplidorID"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(getConection(), stm);
+        }
+
+        return numeros;
+    }
 }

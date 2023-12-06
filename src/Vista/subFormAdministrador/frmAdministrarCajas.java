@@ -10,6 +10,7 @@ import static Modelo.Program.VerificarNumCaja;
 import static Modelo.Program.setCajas;
 import static Modelo.Program.deleteCaja;
 import static Modelo.Program.updateCaja;
+import static Modelo.Program.updateProducto;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -259,7 +260,7 @@ public class frmAdministrarCajas extends javax.swing.JFrame {
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Ingresar un valor valido", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             }
-            jTable1.setModel(ModeloBuscarCajaFiltro(numero,ComboBoxBuscar.getSelectedIndex()));
+            jTable1.setModel(ModeloBuscarCajaFiltro(numero, ComboBoxBuscar.getSelectedIndex()));
         }
     }//GEN-LAST:event_btnBuscarClientesActionPerformed
 
@@ -268,6 +269,7 @@ public class frmAdministrarCajas extends javax.swing.JFrame {
             if (jTable1.getValueAt(0, 0) != null) {
                 if (VerificarNumCaja(ObtenerNumCaja())) {
                     setCajas(ObtenerNumCaja());
+                    JOptionPane.showMessageDialog(this, "Caja agregado correctamente", "Alerta", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(this, "EL numero de caja ya exciste", "Alerta", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -286,6 +288,7 @@ public class frmAdministrarCajas extends javax.swing.JFrame {
                     filaSeleccionada[i] = jTable1.getValueAt(jTable1.getSelectedRow(), i).toString();
                 }
                 deleteCaja(filaSeleccionada);
+                JOptionPane.showMessageDialog(this, "Caja eliminado correctamente", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "primero debes seleccionar una caja", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -305,12 +308,13 @@ public class frmAdministrarCajas extends javax.swing.JFrame {
                 for (int i = 0; i < filaSeleccionada.length; i++) {
                     filaSeleccionada[i] = jTable1.getValueAt(jTable1.getSelectedRow(), i).toString();
                 }
-                updateCaja(filaSeleccionada);
+                updateProducto(filaSeleccionada);
+                JOptionPane.showMessageDialog(this, "Caja actualizada correctamente", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "primero debes seleccionar una caja", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             }
         } else
-            JOptionPane.showMessageDialog(this, "primero debes buscar la caja a eliminar", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "primero debes buscar la caja para actualizar", "Alerta", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private int ObtenerNumCaja() {
