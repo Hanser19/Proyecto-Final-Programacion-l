@@ -4,6 +4,7 @@
  */
 package Vista.subPanelDashboard;
 
+import Modelo.IDesplegar;
 import Vista.subFormAdministrador.frmAdministrarCajas;
 import Vista.subFormAdministrador.frmAdministrarCategoria;
 import Vista.subFormAdministrador.frmAdministrarClientes;
@@ -15,7 +16,7 @@ import Vista.subFormAdministrador.frmAdministrarUsuarios;
  *
  * @author Hanser Perez
  */
-public class frmAdministrador extends javax.swing.JPanel {
+public class frmAdministrador extends javax.swing.JPanel implements IDesplegar {
 
     /**
      * Creates new form frmAdministrador
@@ -229,7 +230,7 @@ public class frmAdministrador extends javax.swing.JPanel {
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
     private void btnProovedores1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProovedores1ActionPerformed
-        DesplegarProvedores();
+        DesplegarProveedores();
     }//GEN-LAST:event_btnProovedores1ActionPerformed
 
     private void btnCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriasActionPerformed
@@ -263,52 +264,77 @@ public class frmAdministrador extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     // End of variables declaration//GEN-END:variables
 
-    static void DesplegarUsuarios() {
-
-        frmAdministrarUsuarios usuarios = new frmAdministrarUsuarios();
-        usuarios.pack();
-        usuarios.setVisible(true);
-        usuarios.setLocationRelativeTo(null);
-    }
-
-    static void DesplegarProvedores() {
-
+    @Override
+    public void DesplegarProveedores() {
         frmAdministrarProveedores provedores = new frmAdministrarProveedores();
         provedores.pack();
         provedores.setVisible(true);
         provedores.setLocationRelativeTo(null);
     }
 
-    static void DesplegarCategorias() {
+    @Override
+    public void DesplegarClientes() {
+        frmAdministrarClientes clientes = new frmAdministrarClientes();
+        clientes.pack();
+        clientes.setVisible(true);
+        clientes.setLocationRelativeTo(null);
+    }
 
+    @Override
+    public void DesplegarUsuarios() {
+        frmAdministrarUsuarios usuarios = new frmAdministrarUsuarios();
+        usuarios.pack();
+        usuarios.setVisible(true);
+        usuarios.setLocationRelativeTo(null);
+    }
+
+    @Override
+    public void DesplegarCategorias() {
         frmAdministrarCategoria categorias = new frmAdministrarCategoria();
         categorias.pack();
         categorias.setVisible(true);
         categorias.setLocationRelativeTo(null);
     }
 
-    static void DesplegarCajas() {
-
-        frmAdministrarCajas cajas = new frmAdministrarCajas();
-        cajas.pack();
-        cajas.setVisible(true);
-        cajas.setLocationRelativeTo(null);
-    }
-
-    static void DesplegarProductos() {
-
+    @Override
+    public void DesplegarProductos() {
         frmAdministrarProductos productos = new frmAdministrarProductos();
         productos.pack();
         productos.setVisible(true);
         productos.setLocationRelativeTo(null);
     }
 
-    static void DesplegarClientes() {
+    @Override
+    public void DesplegarCajas() {
+        frmAdministrarCajas cajas = new frmAdministrarCajas();
+        cajas.pack();
+        cajas.setVisible(true);
+        cajas.setLocationRelativeTo(null);
+    }
 
-        frmAdministrarClientes clientes = new frmAdministrarClientes();
-        clientes.pack();
-        clientes.setVisible(true);
-        clientes.setLocationRelativeTo(null);
+    @Override
+    public void DesplegarConsultas() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarCompra() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarIngresos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarGastos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarBalanceGeneral() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

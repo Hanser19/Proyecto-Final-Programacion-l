@@ -4,15 +4,16 @@
  */
 package Vista.subPanelDashboard;
 
-import Vista.SubFormAlmacen.frmArticulos;
-import Vista.subFormAlmacen.frmCategoriaAlmacen;
+import Modelo.IDesplegar;
+import Vista.subFormAdministrador.frmAdministrarCategoria;
+import Vista.subFormAdministrador.frmAdministrarProductos;
 import folder.frmConsultas;
 
 /**
  *
  * @author Hanser Perez
  */
-public class frmAlmacen extends javax.swing.JPanel {
+public class frmAlmacen extends javax.swing.JPanel implements IDesplegar {
 
     /**
      * Creates new form frmAlmacen
@@ -86,7 +87,7 @@ public class frmAlmacen extends javax.swing.JPanel {
         btnArticulos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnArticulos.setForeground(new java.awt.Color(255, 255, 255));
         btnArticulos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Imagenes/Articulos.png"))); // NOI18N
-        btnArticulos.setText("Articulos");
+        btnArticulos.setText("Productos");
         btnArticulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnArticulos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,7 +172,7 @@ public class frmAlmacen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArticulosActionPerformed
-        DesplegarArticulos();
+        DesplegarProductos();
     }//GEN-LAST:event_btnArticulosActionPerformed
 
     private void btnCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriasActionPerformed
@@ -194,27 +195,67 @@ public class frmAlmacen extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
 
-    static void DesplegarArticulos() {
-        
-        frmArticulos articulos = new frmArticulos();
-        articulos.pack();
-        articulos.setVisible(true);
-        articulos.setLocationRelativeTo(null);
+    @Override
+    public void DesplegarProductos() {
+        frmAdministrarProductos productos = new frmAdministrarProductos();
+        productos.pack();
+        productos.setVisible(true);
+        productos.setLocationRelativeTo(null);
     }
 
-    static void DesplegarCategorias() {
-        
-        frmCategoriaAlmacen categoria = new frmCategoriaAlmacen();
-        categoria.pack();
-        categoria.setVisible(true);
-        categoria.setLocationRelativeTo(null);        
+    @Override
+    public void DesplegarUsuarios() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-        static void DesplegarConsultas() {
-        
+
+    @Override
+    public void DesplegarProveedores() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarClientes() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarCajas() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarCategorias() {
+        frmAdministrarCategoria categorias = new frmAdministrarCategoria();
+        categorias.pack();
+        categorias.setVisible(true);
+        categorias.setLocationRelativeTo(null);
+    }
+
+    @Override
+    public void DesplegarConsultas() {
         frmConsultas consultas = new frmConsultas();
         consultas.pack();
         consultas.setVisible(true);
-        consultas.setLocationRelativeTo(null);        
+        consultas.setLocationRelativeTo(null);
+    }
+
+    @Override
+    public void DesplegarCompra() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarIngresos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarGastos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarBalanceGeneral() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

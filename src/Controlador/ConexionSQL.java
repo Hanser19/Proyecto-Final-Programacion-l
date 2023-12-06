@@ -10,9 +10,9 @@ import java.sql.ResultSet;
 public abstract class ConexionSQL {
     
     private static final String driver = "com.mysql.cj.jdbc.Driver";
-    private static final String hostName = "LocalHost";
+    private static final String hostName = "localhost";
     private static final String port = "3306";
-    private static final String DBName = "provisional";
+    private static final String DBName = "PF_P1";
     
     private static final String url = "jdbc:mysql://" + hostName + ":" + port + "/" + DBName + "?useSSL=false";
     

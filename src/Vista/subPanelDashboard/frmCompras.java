@@ -4,15 +4,15 @@
  */
 package Vista.subPanelDashboard;
 
-import Vista.SubFormAlmacen.frmArticulos;
+import Modelo.IDesplegar;
+import Vista.subFormAdministrador.frmAdministrarProveedores;
 import Vista.subFormCompras.Compra;
-import Vista.subFormCompras.frmVerProveedores;
 
 /**
  *
  * @author Juan Manuel
  */
-public class frmCompras extends javax.swing.JPanel {
+public class frmCompras extends javax.swing.JPanel implements IDesplegar {
 
     /**
      * Creates new form Compras
@@ -182,11 +182,61 @@ public class frmCompras extends javax.swing.JPanel {
         compra.setLocationRelativeTo(null);
     }
 
-    static void DesplegarProveedores() {
+    @Override
+    public void DesplegarProductos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
-        frmVerProveedores proveedores = new frmVerProveedores();
-        proveedores.pack();
-        proveedores.setVisible(true);
-        proveedores.setLocationRelativeTo(null);
+    @Override
+    public void DesplegarCategorias() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarUsuarios() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarClientes() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarCajas() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarConsultas() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarCompra() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarProveedores() {
+        frmAdministrarProveedores provedores = new frmAdministrarProveedores();
+        provedores.pack();
+        provedores.setVisible(true);
+        provedores.setLocationRelativeTo(null);
+    }
+
+    @Override
+    public void DesplegarIngresos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarGastos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void DesplegarBalanceGeneral() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
