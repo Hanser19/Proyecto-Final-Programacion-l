@@ -132,7 +132,7 @@ public class Productos extends ConexionSQL {
             close(getConection(), stm);
         }
     }
-    
+
     public static String[] getProductoPorFiltro(int numero, int index) {
         String[] fila = new String[8];
 
@@ -149,7 +149,7 @@ public class Productos extends ConexionSQL {
             resultSet = stm.executeQuery();
 
             while (resultSet.next()) {
-                
+
                 fila[0] = resultSet.getString("ProductoID");
                 fila[1] = resultSet.getString("Codigo");
                 fila[2] = resultSet.getString("Nombre");
@@ -194,7 +194,7 @@ public class Productos extends ConexionSQL {
         }
         return datos;
     }
-    
+
     public static void Delete(int id) {
         query = "DELETE FROM Productos WHERE ProductoID = ?";
 
@@ -208,29 +208,29 @@ public class Productos extends ConexionSQL {
             System.out.println("Producto eliminado correctamente");
         }
     }
-    
+
     public static void update(int codigo, String nombre, double precioVenta, double precioCompra, int categoriaId, int suplidorId) {
-    query = "UPDATE Productos " +
-                   "SET Nombre = ?, PrecioUnitario = ?, PrecioCompra = ?, CategoriaID = ?, SuplidorID = ? " +
-                   "WHERE Codigo = ?";
+        query = "UPDATE Productos "
+                + "SET Nombre = ?, PrecioUnitario = ?, PrecioCompra = ?, CategoriaID = ?, SuplidorID = ? "
+                + "WHERE Codigo = ?";
 
-    try {
-        stm = getConection().prepareStatement(query);
-        stm.setString(1, nombre);
-        stm.setDouble(2, precioVenta);
-        stm.setDouble(3, precioCompra);
-        stm.setInt(4, categoriaId);
-        stm.setInt(5, suplidorId);
-        stm.setInt(6, codigo);
+        try {
+            stm = getConection().prepareStatement(query);
+            stm.setString(1, nombre);
+            stm.setDouble(2, precioVenta);
+            stm.setDouble(3, precioCompra);
+            stm.setInt(4, categoriaId);
+            stm.setInt(5, suplidorId);
+            stm.setInt(6, codigo);
 
-        stm.executeUpdate();
+            stm.executeUpdate();
 
-    } catch (SQLException e) {
-        // Manejar la excepción apropiadamente (puedes imprimir el mensaje o lanzar una excepción)
-        e.printStackTrace();
-    } finally {
-        close(getConection(), stm);
+        } catch (SQLException e) {
+            // Manejar la excepción apropiadamente (puedes imprimir el mensaje o lanzar una excepción)
+            e.printStackTrace();
+        } finally {
+            close(getConection(), stm);
+        }
     }
-}
 
 }

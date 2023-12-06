@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * @author cajor
  */
 public final class Cajas extends ConexionSQL {
+
     private int Caja_ID;
     private String Estado;
     private int Caja_Num;

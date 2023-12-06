@@ -31,6 +31,7 @@ public class frmLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         PanelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
         PanelPrincipal.setPreferredSize(new java.awt.Dimension(800, 500));
@@ -190,7 +191,7 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAccederActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-
+        DesplegarRegistrar();
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     public static void main(String args[]) {
@@ -239,4 +240,13 @@ public class frmLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    void DesplegarRegistrar() {
+        frmRegistroUsuario registro = new frmRegistroUsuario();
+        registro.pack();
+        registro.setVisible(true);
+        registro.setLocationRelativeTo(null);
+        this.dispose();
+    }
+
 }

@@ -4,11 +4,23 @@
  */
 package Vista.subFormAdministrador;
 
+import static Modelo.Program.VerificarCategoria;
+import static Modelo.Program.setCategorias;
+import Modelo.Categorias;
+import Modelo.JtableModel;
+import static Modelo.JtableModel.modeloBuscarCategoriaFiltro;
+import static Modelo.JtableModel.modeloNuevaCategoria;
+import javax.swing.JOptionPane;
+import static Modelo.Program.deleteCategoria;
+import static Modelo.Program.updateCategoria;
+
 /**
  *
  * @author Hanser Perez
  */
 public class frmAdministrarCategoria extends javax.swing.JFrame {
+
+    private Object valorFila;
 
     /**
      * Creates new form frmAdministrarCategoria
@@ -31,16 +43,15 @@ public class frmAdministrarCategoria extends javax.swing.JFrame {
         lblAdministrarCategorias = new javax.swing.JLabel();
         textBuscar = new javax.swing.JTextField();
         ComboBoxBuscar = new javax.swing.JComboBox<>();
-        btnBuscarClientes = new javax.swing.JButton();
+        btnBuscarCategorias = new javax.swing.JButton();
         jPanelCentral = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableCategorias = new javax.swing.JTable();
         jPanelInferior = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnNuevo = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -60,18 +71,18 @@ public class frmAdministrarCategoria extends javax.swing.JFrame {
         });
 
         ComboBoxBuscar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        ComboBoxBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nombre" }));
+        ComboBoxBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo" }));
         ComboBoxBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxBuscarActionPerformed(evt);
             }
         });
 
-        btnBuscarClientes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnBuscarClientes.setText("Buscar");
-        btnBuscarClientes.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarCategorias.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnBuscarCategorias.setText("Buscar");
+        btnBuscarCategorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarClientesActionPerformed(evt);
+                btnBuscarCategoriasActionPerformed(evt);
             }
         });
 
@@ -85,7 +96,7 @@ public class frmAdministrarCategoria extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(btnBuscarClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBuscarCategorias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelSuperiorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -101,22 +112,19 @@ public class frmAdministrarCategoria extends javax.swing.JFrame {
                 .addGroup(PanelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ComboBoxBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnBuscarCategorias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCategorias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Descripcion"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableCategorias);
 
         javax.swing.GroupLayout jPanelCentralLayout = new javax.swing.GroupLayout(jPanelCentral);
         jPanelCentral.setLayout(jPanelCentralLayout);
@@ -137,48 +145,62 @@ public class frmAdministrarCategoria extends javax.swing.JFrame {
 
         jPanelInferior.setBackground(new java.awt.Color(0, 51, 102));
 
-        jButton1.setText("Nuevo");
-        jButton1.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnNuevo.setText("Nuevo");
+        btnNuevo.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Guardar");
-        jButton2.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnGuardar.setText("Guardar");
+        btnGuardar.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Eliminar");
-        jButton3.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Buscar");
-        jButton5.setPreferredSize(new java.awt.Dimension(150, 30));
-
-        jButton4.setText("Actualizar");
-        jButton4.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelInferiorLayout = new javax.swing.GroupLayout(jPanelInferior);
         jPanelInferior.setLayout(jPanelInferiorLayout);
         jPanelInferiorLayout.setHorizontalGroup(
             jPanelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInferiorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(98, Short.MAX_VALUE)
+                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
         );
         jPanelInferiorLayout.setVerticalGroup(
             jPanelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInferiorLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -227,9 +249,97 @@ public class frmAdministrarCategoria extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboBoxBuscarActionPerformed
 
-    private void btnBuscarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClientesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarClientesActionPerformed
+    private void btnBuscarCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCategoriasActionPerformed
+
+        String filtro = textBuscar.getText();
+        int numero = 0;
+
+        if (filtro.isEmpty()) {
+            jTableCategorias.setModel(JtableModel.ModeloBuscarCategoria());
+        } else {
+            try {
+                numero = Integer.parseInt(textBuscar.getText());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Ingresar una categoría válida", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            jTableCategorias.setModel(modeloBuscarCategoriaFiltro(numero, ComboBoxBuscar.getSelectedIndex()));
+        }
+
+
+    }//GEN-LAST:event_btnBuscarCategoriasActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        try {
+            int filas = jTableCategorias.getRowCount();
+
+            for (int i = 0; i < filas; i++) {
+
+                String Nombre = jTableCategorias.getValueAt(i, 0).toString().trim();
+                String Descripcion = jTableCategorias.getValueAt(i, 1).toString().trim();
+
+                if (Nombre.isEmpty() || Descripcion.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Error: Uno o más campos están vacíos en la fila " + i);
+
+                } else if (VerificarCategoria(Nombre)) {
+
+                    setCategorias(Nombre, Descripcion);
+                    JOptionPane.showMessageDialog(this, "Categorias Agregado Correctamente");
+                } else {
+                    JOptionPane.showMessageDialog(this, "La categoria ya existe, intente otra diferente");
+                }
+            }
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(this, "Error: Uno o mas campos estan vacio en la fila");
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        vaciarFilasJtable();
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+
+        String[] filaSeleccionada = new String[3]; // Assuming 3 columns for CategoriaID, Nombre, and Descripcion
+
+        if (jTableCategorias.getColumnCount() == 3) {
+            if (jTableCategorias.getSelectedRow() != -1) {
+                for (int i = 0; i < filaSeleccionada.length; i++) {
+                    filaSeleccionada[i] = jTableCategorias.getValueAt(jTableCategorias.getSelectedRow(), i).toString();
+                }
+                deleteCategoria(filaSeleccionada);
+                JOptionPane.showMessageDialog(this, "Categoria Eliminado Correctamente", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Primero debes seleccionar una Categoria", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Primero debes seleccionar una Categoria", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+
+        String[] filaSeleccionada = new String[3]; // Assuming 3 columns for CategoriaID, Nombre, and Descripcion
+
+        if (jTableCategorias.getRowCount() == 1 && jTableCategorias.getColumnCount() == 3) {
+            if (jTableCategorias.getSelectedRow() != -1) {
+                for (int i = 0; i < filaSeleccionada.length; i++) {
+                    valorFila = jTableCategorias.getValueAt(jTableCategorias.getSelectedRow(), i);
+                    filaSeleccionada[i] = (valorFila != null) ? valorFila.toString() : "";
+                }
+                updateCategoria(filaSeleccionada);
+                JOptionPane.showMessageDialog(this, "Categoría actualizada correctamente", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Primero debe seleccionar la categoría", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Primero debe buscar la categoría a actualizar", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,17 +380,24 @@ public class frmAdministrarCategoria extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboBoxBuscar;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JPanel PanelSuperior;
-    private javax.swing.JButton btnBuscarClientes;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnBuscarCategorias;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnNuevo;
     private javax.swing.JPanel jPanelCentral;
     private javax.swing.JPanel jPanelInferior;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableCategorias;
     private javax.swing.JLabel lblAdministrarCategorias;
     private javax.swing.JTextField textBuscar;
     // End of variables declaration//GEN-END:variables
+
+    private void vaciarFilasJtable() {
+
+        for (int i = 0; i < 2; i++) {
+            jTableCategorias.setValueAt("", 0, i);
+            jTableCategorias.setModel(modeloNuevaCategoria());
+        }
+    }
 }

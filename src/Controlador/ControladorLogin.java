@@ -34,6 +34,7 @@ public class ControladorLogin {
 
             JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
             new PantallaCarga.frmPantallaCarga(null, true).setVisible(true);
+            
         } else {
             JOptionPane.showMessageDialog(null, "Error al iniciar sesión. Verifica tus credenciales");
         }

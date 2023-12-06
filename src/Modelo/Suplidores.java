@@ -5,103 +5,209 @@
 package Modelo;
 
 import Controlador.ConexionSQL;
-import static Controlador.ConexionSQL.close;
-import static Controlador.ConexionSQL.getConection;
+import java.awt.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
  *
- * @author cajor
+ * @author Hanser Perez
  */
 public class Suplidores extends ConexionSQL {
 
-    public int Sup_ID;
-    public String Sup_Nombre;
-    public String Sup_Direccion;
-    public String Sup_Ciudad;
-    public String Sup_Pais;
-    public int Sup_Telefono;
-    public String Sup_Correo;
-    public String Sup_Pag_Web;
-    public int Sup_RNC;
+    private int ID;
+    private String Nombre;
+    private String Direccion;
+    private String Ciudad;
+    private String Pais;
+    private String Telefono;
+    private int RNC;
     private static String query;
 
-    public int getSup_ID() {
-        return Sup_ID;
+    public int getID() {
+        return ID;
     }
 
-    public void setSup_ID(int Sup_ID) {
-        this.Sup_ID = Sup_ID;
+    public String getNombre() {
+        return Nombre;
     }
 
-    public String getSup_Nombre() {
-        return Sup_Nombre;
+    public String getDireccion() {
+        return Direccion;
     }
 
-    public void setSup_Nombre(String Sup_Nombre) {
-        this.Sup_Nombre = Sup_Nombre;
+    public String getCiudad() {
+        return Ciudad;
     }
 
-    public String getSup_Direccion() {
-        return Sup_Direccion;
+    public String getPais() {
+        return Pais;
     }
 
-    public void setSup_Direccion(String Sup_Direccion) {
-        this.Sup_Direccion = Sup_Direccion;
+    public String getTelefono() {
+        return Telefono;
     }
 
-    public String getSup_Ciudad() {
-        return Sup_Ciudad;
+    public int getRNC() {
+        return RNC;
     }
 
-    public void setSup_Ciudad(String Sup_Ciudad) {
-        this.Sup_Ciudad = Sup_Ciudad;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
-    public String getSup_Pais() {
-        return Sup_Pais;
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
-    public void setSup_Pais(String Sup_Pais) {
-        this.Sup_Pais = Sup_Pais;
+    public void setDireccion(String Direccion) {
+        this.Direccion = Direccion;
     }
 
-    public int getSup_Telefono() {
-        return Sup_Telefono;
+    public void setCiudad(String Ciudad) {
+        this.Ciudad = Ciudad;
     }
 
-    public void setSup_Telefono(int Sup_Telefono) {
-        this.Sup_Telefono = Sup_Telefono;
+    public void setPais(String Pais) {
+        this.Pais = Pais;
     }
 
-    public String getSup_Correo() {
-        return Sup_Correo;
+    public void setTelefono(String Telefono) {
+        this.Telefono = Telefono;
     }
 
-    public void setSup_Correo(String Sup_Correo) {
-        this.Sup_Correo = Sup_Correo;
+    public void setRNC(int RNC) {
+        this.RNC = RNC;
     }
 
-    public String getSup_Pag_Web() {
-        return Sup_Pag_Web;
-    }
-
-    public void setSup_Pag_Web(String Sup_Pag_Web) {
-        this.Sup_Pag_Web = Sup_Pag_Web;
-    }
-
-    public int getSup_RNC() {
-        return Sup_RNC;
-    }
-
-    public void setSup_RNC(int Sup_RNC) {
-        this.Sup_RNC = Sup_RNC;
+    public Suplidores(String Nombre, String Direccion, String Ciudad, String Pais, String Telefono, int RNC) {
+        this.Nombre = Nombre;
+        this.Direccion = Direccion;
+        this.Ciudad = Ciudad;
+        this.Pais = Pais;
+        this.Telefono = Telefono;
+        this.RNC = RNC;
+        insert();
+        asignarId();
     }
 
     @Override
-    protected void insert() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void insert() {
+
+        query = "INSERT INTO Suplidores (Nombre, Direccion, Ciudad, Pais, Telefono, RNC) VALUES(?,?,?,?,?,?)";
+
+        try {
+
+            stm = getConection().prepareStatement(query);
+
+            stm.setString(1, Nombre);
+            stm.setString(2, Direccion);
+            stm.setString(3, Ciudad);
+            stm.setString(4, Pais);
+            stm.setString(5, Telefono);
+            stm.setInt(6, RNC);
+
+            stm.executeUpdate();
+
+            System.out.print("Se agrego el proveedor correctamente");
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        } finally {
+            close(getConection(), stm);
+        }
+    }
+    
+    
+
+    public static ArrayList<String[]> select() {
+        ArrayList<String[]> datos = new ArrayList<>();
+        query = "SELECT * from Suplidores";
+
+        try {
+
+            stm = getConection().prepareStatement(query);
+            resultSet = stm.executeQuery();
+
+            while (resultSet.next()) {
+
+                String[] filas = new String[7];
+                filas[0] = resultSet.getString("SuplidorID");
+                filas[1] = resultSet.getString("Nombre");
+                filas[2] = resultSet.getString("Direccion");
+                filas[3] = resultSet.getString("Ciudad");
+                filas[4] = resultSet.getString("Pais");
+                filas[5] = resultSet.getString("Telefono");
+                filas[6] = resultSet.getString("RNC");
+
+                datos.add(filas);
+            }
+        } catch (SQLException e) {
+        } finally {
+            close(getConection(), stm);
+        }
+        return datos;
+    }
+
+    private void asignarId() {
+        query = "select SuplidorID from Suplidores WHERE RNC = ?";
+
+        try {
+            stm = getConection().prepareStatement(query);
+            stm.setInt(1, RNC);
+            resultSet = stm.executeQuery();
+            while (resultSet.next()) {
+                this.RNC = resultSet.getInt("RNC");
+            }
+        } catch (SQLException e) {
+        } finally {
+            close(getConection(), stm);
+            System.out.println("se agrego el RNC correctamente el RNC es: " + this.RNC);
+        }
+    }
+
+    public static void Delete(int id) {
+        query = "DELETE FROM Suplidores WHERE SuplidorID = ?";
+
+        try {
+            stm = getConection().prepareStatement(query);
+            stm.setInt(1, id);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+        } finally {
+            close(getConection(), stm);
+            System.out.println("Proveedor eliminada correctamente");
+        }
+    }
+
+    public static void update(int SuplidorID, String Nombre, String Direccion, String Ciudad, String Pais, String Telefono, int RNC) {
+
+        query = "UPDATE Suplidores SET Nombre=?, Direccion=?, Ciudad=?, Pais=?, Telefono=?, RNC=?  WHERE SuplidorID=?";
+
+        try {
+            stm = getConection().prepareStatement(query);
+
+            stm.setString(1, Nombre);
+            stm.setString(2, Direccion);
+            stm.setString(3, Ciudad);
+            stm.setString(4, Pais);
+            stm.setString(5, Telefono);
+            stm.setInt(6, RNC);
+            stm.setInt(7, SuplidorID);
+
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(getConection(), stm);
+            System.out.println("Proveedor Actualizado Correctamente");
+        }
     }
 
     public static ArrayList<Integer> getIDSuplidores() {
@@ -123,4 +229,64 @@ public class Suplidores extends ConexionSQL {
 
         return numeros;
     }
+
+    public static String[] getSuplidorPorFiltro(int numero, int index) {
+
+        String[] fila = new String[7];
+
+        query = "Select * from Suplidores where RNC = ?";
+
+        if (index == 0) {
+
+            query = "Select * from Suplidores where SuplidorID = ?";
+
+        } else {
+            query = "Select * from Suplidores where RNC = ?";
+        }
+
+        try {
+            stm = getConection().prepareStatement(query);
+            stm.setInt(1, numero);
+
+            resultSet = stm.executeQuery();
+
+            while (resultSet.next()) {
+                fila[0] = resultSet.getString("SuplidorID");
+                fila[1] = resultSet.getString("Nombre");
+                fila[2] = resultSet.getString("Direccion");
+                fila[3] = resultSet.getString("Ciudad");
+                fila[4] = resultSet.getString("Pais");
+                fila[5] = resultSet.getString("Telefono");
+                fila[6] = resultSet.getString("RNC");
+            }
+        } catch (SQLException e) {
+        } finally {
+            close(getConection(), stm);
+        }
+        return fila;
+    }
+
+    public static ArrayList<Integer> getRNCsuplidor() {
+
+        ArrayList<Integer> rncList = new ArrayList<>();
+        query = "SELECT RNC FROM Suplidores";
+
+        try {
+            stm = getConection().prepareStatement(query);
+            resultSet = stm.executeQuery();
+
+            while (resultSet.next()) {
+                // Obtener el RNC como un entero
+                int rnc = resultSet.getInt("RNC");
+                rncList.add(rnc);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(getConection(), stm);
+        }
+
+        return rncList;
+    }
+
 }

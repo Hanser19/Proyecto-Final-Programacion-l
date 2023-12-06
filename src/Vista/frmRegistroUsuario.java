@@ -67,11 +67,11 @@ public class frmRegistroUsuario extends javax.swing.JFrame {
             .addGroup(PanelLogoLayout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         PanelPrincipal.add(PanelLogo);
-        PanelLogo.setBounds(0, 0, 370, 450);
+        PanelLogo.setBounds(0, 0, 370, 460);
 
         PanelLateral.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -94,8 +94,9 @@ public class frmRegistroUsuario extends javax.swing.JFrame {
         btnRegistrar.setBackground(new java.awt.Color(0, 0, 102));
         btnRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrar.setText("Acceder");
+        btnRegistrar.setText("Registrar");
         btnRegistrar.setActionCommand("Registrar");
+        btnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
@@ -106,6 +107,7 @@ public class frmRegistroUsuario extends javax.swing.JFrame {
 
         btnIniciarSesion.setForeground(new java.awt.Color(0, 0, 102));
         btnIniciarSesion.setText("Iniciar Sesion");
+        btnIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarSesionActionPerformed(evt);
@@ -225,7 +227,7 @@ public class frmRegistroUsuario extends javax.swing.JFrame {
     }
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        // TODO add your handling code here:
+        DesplegarLogin();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     /**
@@ -282,4 +284,12 @@ public class frmRegistroUsuario extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    void DesplegarLogin() {
+        frmLogin login = new frmLogin();
+        login.pack();
+        login.setVisible(true);
+        login.setLocationRelativeTo(null);
+        this.dispose();
+    }
 }

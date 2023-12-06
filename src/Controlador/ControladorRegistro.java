@@ -19,6 +19,12 @@ public class ControladorRegistro {
 
     public void registrarUsuario(String usuario, char[] contrasena, char[] confirmarContrasena, String rolSeleccionado) {
 
+        // Verificar si los campos no están vacíos
+        if (usuario.isEmpty() || contrasena.length == 0 || confirmarContrasena.length == 0) {
+            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
+            return; // Salir del método si hay campos vacíos
+        }
+
         String pass = new String(contrasena);
         String passCon = new String(confirmarContrasena);
 
@@ -43,4 +49,5 @@ public class ControladorRegistro {
             JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
         }
     }
+
 }

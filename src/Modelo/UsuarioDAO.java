@@ -9,8 +9,8 @@ import java.util.logging.Logger;
 
 public class UsuarioDAO extends ConexionBD {
 
-    String INSERTAR_USUARIO = "INSERT INTO usuarios (usuario, contrasena, rol) VALUES (?, ?, ?)";
-    String BUSCAR_USUARIO = "SELECT id, usuario, contrasena, rol FROM usuarios WHERE usuario = ?";
+    String INSERTAR_USUARIO = "INSERT INTO Usuarios (Usuario, Contraseña, Rol) VALUES (?, ?, ?)";
+    String BUSCAR_USUARIO = "SELECT UsuarioID, Usuarios, Contraseña, Rol FROM Usuarios WHERE Usuarios = ?";
 
     public boolean insertarUsuario(Usuarios usuario) {
 

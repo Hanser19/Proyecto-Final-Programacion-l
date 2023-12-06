@@ -4,6 +4,14 @@
  */
 package Vista.subFormAdministrador;
 
+import Modelo.JtableModel;
+import static Modelo.JtableModel.ModeloBuscarClienteFiltro;
+import static Modelo.Program.VerificarIdCliente;
+import static Modelo.Program.deleteCliente;
+import static Modelo.Program.setClientes;
+import static Modelo.Program.updateCliente;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Hanser Perez
@@ -34,12 +42,11 @@ public class frmAdministrarClientes extends javax.swing.JFrame {
         btnBuscarClientes = new javax.swing.JButton();
         jPanelCentral = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableClientes = new javax.swing.JTable();
         jPanelInferior = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -60,7 +67,7 @@ public class frmAdministrarClientes extends javax.swing.JFrame {
         });
 
         ComboBoxBuscar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        ComboBoxBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nombre" }));
+        ComboBoxBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo" }));
         ComboBoxBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxBuscarActionPerformed(evt);
@@ -105,18 +112,15 @@ public class frmAdministrarClientes extends javax.swing.JFrame {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Apellidos", "Genero", "Direccion", "Telefono"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableClientes);
 
         javax.swing.GroupLayout jPanelCentralLayout = new javax.swing.GroupLayout(jPanelCentral);
         jPanelCentral.setLayout(jPanelCentralLayout);
@@ -139,35 +143,50 @@ public class frmAdministrarClientes extends javax.swing.JFrame {
 
         jButton1.setText("Nuevo");
         jButton1.setPreferredSize(new java.awt.Dimension(150, 30));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Guardar");
         jButton2.setPreferredSize(new java.awt.Dimension(150, 30));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Eliminar");
         jButton3.setPreferredSize(new java.awt.Dimension(150, 30));
-
-        jButton5.setText("Buscar");
-        jButton5.setPreferredSize(new java.awt.Dimension(150, 30));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Actualizar");
         jButton4.setPreferredSize(new java.awt.Dimension(150, 30));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelInferiorLayout = new javax.swing.GroupLayout(jPanelInferior);
         jPanelInferior.setLayout(jPanelInferiorLayout);
         jPanelInferiorLayout.setHorizontalGroup(
             jPanelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInferiorLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(38, 38, 38)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(44, 44, 44)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
         );
         jPanelInferiorLayout.setVerticalGroup(
             jPanelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,7 +195,6 @@ public class frmAdministrarClientes extends javax.swing.JFrame {
                 .addGroup(jPanelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -224,12 +242,90 @@ public class frmAdministrarClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboBoxBuscarActionPerformed
 
     private void btnBuscarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClientesActionPerformed
+        String filtro = textBuscar.getText();
+        int numero = 0;
+        /*filtro para buscar por filtro o general*/
+        if (filtro.isEmpty()) {
+            jTableClientes.setModel(JtableModel.ModeloBuscarClientes());
+        } else {
+            try {
+                numero = Integer.parseInt(textBuscar.getText());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Ingresar un valor valido", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            }
+            jTableClientes.setModel(ModeloBuscarClienteFiltro(numero, ComboBoxBuscar.getSelectedIndex()));
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarClientesActionPerformed
 
     private void textBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textBuscarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            int filas = jTableClientes.getRowCount();
+
+            for (int i = 0; i < filas; i++) {
+                int ClienteID = i;
+                String Nombre = (String) jTableClientes.getValueAt(i, 0);
+                String Apellidos = (String) jTableClientes.getValueAt(i, 1);
+                String Direccion = (String) jTableClientes.getValueAt(i, 2);
+                String Genero = (String) jTableClientes.getValueAt(i, 3);
+                int Telefono = Integer.parseInt(jTableClientes.getValueAt(0, 4).toString());
+
+                if (Nombre.isEmpty() || Apellidos.isEmpty() || Direccion.isEmpty() || Genero.isEmpty() || jTableClientes.getValueAt(i, 4) == null) {
+                    JOptionPane.showMessageDialog(this, "ERROR: Uno o más campos están vacíos en la fila " + (i + 1));
+                } else if (VerificarIdCliente(ClienteID)) {
+                    setClientes(Nombre, Apellidos, Genero, Direccion, Telefono);
+                    JOptionPane.showMessageDialog(this, "Se agregó el cliente correctamente.");
+                } else {
+                    JOptionPane.showMessageDialog(this, "El cliente ya existe.");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "ERROR: Uno o más campos están vacíos en la fila.");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jTableClientes.setValueAt(null, 0, 0);
+        jTableClientes.setModel(JtableModel.ModeloNuevoCliente());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String[] filaSeleccionada = new String[6];
+        if (jTableClientes.getRowCount() == 1 && jTableClientes.getColumnCount() == 6) {
+            if (jTableClientes.getSelectedRow() != -1) {
+                for (int i = 0; i < filaSeleccionada.length; i++) {
+                    filaSeleccionada[i] = jTableClientes.getValueAt(jTableClientes.getSelectedRow(), i).toString();
+                }
+                deleteCliente(filaSeleccionada);
+                JOptionPane.showMessageDialog(this, "Se elimino el usuario correctamente.", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Primero debes seleccionar un cliente.", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else
+            JOptionPane.showMessageDialog(this, "Primero debes buscar el cliente a eliminar", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        String[] filaSeleccionada = new String[6];
+        if (jTableClientes.getRowCount() == 1 && jTableClientes.getColumnCount() == 6) {
+            if (jTableClientes.getSelectedRow() != -1) {
+                for (int i = 0; i < filaSeleccionada.length; i++) {
+                    filaSeleccionada[i] = jTableClientes.getValueAt(jTableClientes.getSelectedRow(), i).toString();
+                }
+                updateCliente(filaSeleccionada);
+                JOptionPane.showMessageDialog(this, "Clientes Actualizado correctamente.", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Primero debes seleccionar un cliente.", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else
+            JOptionPane.showMessageDialog(this, "Primero debes buscar el cliente a actualizar", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,11 +371,10 @@ public class frmAdministrarClientes extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanelCentral;
     private javax.swing.JPanel jPanelInferior;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableClientes;
     private javax.swing.JLabel lblAdministrarClientes;
     private javax.swing.JTextField textBuscar;
     // End of variables declaration//GEN-END:variables

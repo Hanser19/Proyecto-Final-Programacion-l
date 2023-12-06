@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class ConexionBD {
 
-    private String BASE = "SistemaSupermercado";
+    private String BASE = "provisional";
     private final String USUARIO = "root";
     private final String CONTRASENA = "1234";
     private final String URL = "jdbc:mysql://localhost:3306/" + BASE;

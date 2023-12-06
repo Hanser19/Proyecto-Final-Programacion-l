@@ -70,7 +70,7 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         jComboBoxCategorias = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -201,11 +201,11 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Actualizar");
-        jButton4.setPreferredSize(new java.awt.Dimension(150, 30));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
 
@@ -269,7 +269,7 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         jPanelInferiorLayout.setVerticalGroup(
@@ -291,7 +291,7 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -396,7 +396,7 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
                     filaSeleccionada[i] = (valorFila != null) ? valorFila.toString() : "";
                 }
                 deleteProducto(filaSeleccionada);
-                 JOptionPane.showMessageDialog(this, "Producto eliminado correctamente", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Producto eliminado correctamente", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "primero debes seleccionar una caja", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -404,8 +404,9 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "primero debes buscar la caja a eliminar", "Alerta", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       String[] filaSeleccionada = new String[8];
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+
+        String[] filaSeleccionada = new String[8];
         if (jTable1.getRowCount() == 1 && jTable1.getColumnCount() == 8) {
             if (jTable1.getSelectedRow() != -1) {
                 for (int i = 0; i < filaSeleccionada.length; i++) {
@@ -415,11 +416,11 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
                 updateProducto(filaSeleccionada);
                 JOptionPane.showMessageDialog(this, "Producto actualizado correctamente", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "primero debes seleccionar una caja", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "primero debes seleccionar un producto", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             }
         } else
-            JOptionPane.showMessageDialog(this, "primero debes buscar la caja para actualizar", "Alerta", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_jButton4ActionPerformed
+            JOptionPane.showMessageDialog(this, "Primero debes buscar el producto para actualizar", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
     private int obtenerCodigoProducto() {
         int num = 0;
@@ -438,7 +439,11 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
         }
 
         jComboBoxCategorias.addActionListener((ActionEvent e) -> {
-            jTable1.setValueAt(jComboBoxCategorias.getSelectedItem(), 0, 4);
+            if (jTable1.getColumnCount() == 6) {
+                jTable1.setValueAt(jComboBoxCategorias.getSelectedItem(), 0, 4);
+            } else {
+                jTable1.setValueAt(jComboBoxCategorias.getSelectedItem(), 0, 6);
+            }
         });
 
     }
@@ -450,18 +455,21 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
         }
 
         jComboBoxSuplidores.addActionListener((ActionEvent e) -> {
-            jTable1.setValueAt(jComboBoxSuplidores.getSelectedItem(), 0, 5);
+            if (jTable1.getColumnCount() == 6) {
+                jTable1.setValueAt(jComboBoxSuplidores.getSelectedItem(), 0, 5);
+            } else {
+                jTable1.setValueAt(jComboBoxSuplidores.getSelectedItem(), 0, 7);
+            }
         });
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
