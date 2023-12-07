@@ -33,8 +33,9 @@ public class ControladorLogin {
         if (usuarioDAO.IniciarSesion(mod)) {
 
             JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
-            new PantallaCarga.frmPantallaCarga(null, true).setVisible(true);
             
+            new PantallaCarga.frmPantallaCarga(null, true).setVisible(true);
+
         } else {
             JOptionPane.showMessageDialog(null, "Error al iniciar sesión. Verifica tus credenciales");
         }
