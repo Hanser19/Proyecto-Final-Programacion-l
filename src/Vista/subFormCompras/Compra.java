@@ -34,8 +34,6 @@ public class Compra extends javax.swing.JFrame {
 
         Fondo = new javax.swing.JPanel();
         header = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        textNombreEmpleado = new javax.swing.JTextField();
         body = new javax.swing.JPanel();
         panelfactura = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -82,34 +80,15 @@ public class Compra extends javax.swing.JFrame {
 
         header.setBackground(new java.awt.Color(0, 51, 102));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Empleado:");
-
-        textNombreEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        textNombreEmpleado.setForeground(new java.awt.Color(204, 0, 0));
-        textNombreEmpleado.setText("nombre");
-        textNombreEmpleado.setEnabled(false);
-
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerLayout.createSequentialGroup()
-                .addGap(491, 491, 491)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textNombreEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                .addGap(591, 591, 591))
+            .addGap(0, 1534, Short.MAX_VALUE)
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         body.setEnabled(false);
@@ -670,7 +649,6 @@ public class Compra extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -692,7 +670,6 @@ public class Compra extends javax.swing.JFrame {
     private javax.swing.JTextField textFecha1;
     private javax.swing.JTextField textImpuestoCOmpra;
     private javax.swing.JTextField textNombreArticulo;
-    private javax.swing.JTextField textNombreEmpleado;
     private javax.swing.JTextField textNombreProveedor;
     private javax.swing.JTextField textNumeroSerie;
     private javax.swing.JTextField textPrecioCompra;

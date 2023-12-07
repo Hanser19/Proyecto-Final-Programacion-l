@@ -17,7 +17,7 @@ public abstract class ConexionSQL {
     private static final String url = "jdbc:mysql://" + hostName + ":" + port + "/" + DBName + "?useSSL=false";
     
     private static final String userName = "root";
-    private static final String password = "1234";
+    private static final String password = "admin";
     
     private static Connection conn;
     protected static PreparedStatement stm;
