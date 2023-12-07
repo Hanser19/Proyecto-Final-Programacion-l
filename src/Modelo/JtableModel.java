@@ -389,12 +389,29 @@ public class JtableModel {
     public static DefaultTableModel ModeloBuscarIngresos() {
         modelo = new DefaultTableModel();
 
-        modelo.addColumn("ID");
-        modelo.addColumn("Descripción");
+        modelo.addColumn("VentasID");
         modelo.addColumn("Fecha");
         modelo.addColumn("Total");
 
-        for (String[] i : Ingresos.selectIngresos()) {
+        for (String[] i : Ventas.select()) {
+            modelo.addRow(i);
+        }
+
+        return modelo;
+    }
+    
+    public static DefaultTableModel ModeloBuscarDetalleVenta() {
+
+        modelo = new DefaultTableModel();
+
+        modelo.addColumn("ClienteID");
+        modelo.addColumn("NumFactura");
+        modelo.addColumn("Fehca");
+        modelo.addColumn("ArticuloID");
+        modelo.addColumn("Cantidad");
+        modelo.addColumn("Total");
+
+        for (String[] i : DetalleVenta.select()) {
             modelo.addRow(i);
         }
 

@@ -11,7 +11,10 @@ import static Modelo.Program.VerificarIdCliente;
 import static Modelo.Program.deleteCliente;
 import static Modelo.Program.setClientes;
 import static Modelo.Program.updateCliente;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import Vista.subFormCaja.Venta;
 
 /**
  *
@@ -19,11 +22,14 @@ import javax.swing.JOptionPane;
  */
 public class frmAdministrarClientes extends javax.swing.JFrame {
 
+    static String[] datosdeSeleccion = new String[6];
+
     /**
      * Creates new form frmAdministrarClientes
      */
     public frmAdministrarClientes() {
         initComponents();
+        seleccionarInf();
     }
 
     /**
@@ -290,9 +296,8 @@ public class frmAdministrarClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int columnas = jTableClientes.getColumnCount();
 
-        for (int i = 0; i < columnas; i++) {
+        for (int i = 0; i < 5; i++) {
 
             jTableClientes.setValueAt("", 0, i);
             jTableClientes.setModel(ModeloNuevoCliente());
@@ -332,39 +337,21 @@ public class frmAdministrarClientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Primero debes buscar el cliente a actualizar", "Alerta", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void seleccionarInf() {
+
+        jTableClientes.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    for(int i = 0; i< datosdeSeleccion.length; i++){
+                        datosdeSeleccion[i] = jTableClientes.getValueAt(jTableClientes.getSelectedRow(), i).toString();
+                    }
+                    Venta.asignarNombreCliente(datosdeSeleccion[1], datosdeSeleccion[0]);
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmAdministrarClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmAdministrarClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmAdministrarClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmAdministrarClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmAdministrarClientes().setVisible(true);
-            }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,13 +1,36 @@
 package Vista.subFormCaja;
 
+import Modelo.JtableModel;
+import Modelo.Program;
 import javax.swing.JFrame;
 import static Vista.subPanelDashboard.frmCaja.getCajaIdSeleccionado;
 import Vista.subFormAdministrador.frmAdministrarClientes;
+import Vista.subFormAdministrador.frmAdministrarProductos;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Juan Manuel
  */
-public final class Venta extends javax.swing.JFrame {
+public class Venta extends javax.swing.JFrame {
+
+    private static int clienteID;
+    private String fecha;
+    private int numeroFactura;
+    private static int ProcuctoID;
+    private int cantidadArticulo;
+    private double precioVenta;
+    private double total;
+    private int ventaID =1;
+    
+    private static int contadorID=1;
+    
+    public void asignarVentaID(){
+        contadorID++;
+        ventaID = contadorID;
+    }
 
     public Venta() {
         initComponents();
@@ -19,6 +42,7 @@ public final class Venta extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         textCaja.setText(getCajaIdSeleccionado());
+        textFecha.setText(obtenerFechaFormateada());
 
     }
 
@@ -35,16 +59,14 @@ public final class Venta extends javax.swing.JFrame {
         header = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         textCaja = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        textNombreEmpleado = new javax.swing.JTextField();
         body = new javax.swing.JPanel();
         panelfactura = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        textNombreCliente = new javax.swing.JTextField();
+        textNombreClient = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         textFecha = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        textCodigoVenta1 = new javax.swing.JTextField();
+        textNumeroFactura = new javax.swing.JTextField();
         btnBuscarCliente = new javax.swing.JButton();
         panelArticulo = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -65,9 +87,6 @@ public final class Venta extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         panelBotonesPantalla = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -89,39 +108,24 @@ public final class Venta extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Empleado:");
-
-        textNombreEmpleado.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        textNombreEmpleado.setForeground(new java.awt.Color(204, 0, 0));
-        textNombreEmpleado.setText("nombre");
-        textNombreEmpleado.setEnabled(false);
-
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(99, 99, 99)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(textCaja)
-                .addGap(581, 581, 581)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textNombreEmpleado)
-                .addGap(140, 140, 140))
+                .addComponent(textCaja, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                .addGap(1129, 1129, 1129))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22))
         );
 
@@ -133,24 +137,27 @@ public final class Venta extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Cliente:");
 
-        textNombreCliente.setEditable(false);
-        textNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textNombreCliente.setText("Nombre");
-        textNombreCliente.setEnabled(false);
+        textNombreClient.setEditable(false);
+        textNombreClient.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        textNombreClient.setEnabled(false);
+        textNombreClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNombreClientActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Fecha:");
 
         textFecha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textFecha.setText("11/04/2004");
         textFecha.setEnabled(false);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setText("Numero factura:");
 
-        textCodigoVenta1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textCodigoVenta1.setText("1234");
-        textCodigoVenta1.setEnabled(false);
+        textNumeroFactura.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        textNumeroFactura.setText("1");
+        textNumeroFactura.setEnabled(false);
 
         btnBuscarCliente.setText("Buscar");
         btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -167,13 +174,13 @@ public final class Venta extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(textCodigoVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(440, 440, 440))
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelfacturaLayout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addComponent(jLabel4)
                 .addGap(11, 11, 11)
-                .addComponent(textNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textNombreClient, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
                 .addComponent(btnBuscarCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -188,14 +195,14 @@ public final class Venta extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(panelfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(textNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textNombreClient, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(textFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelfacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(textCodigoVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -209,7 +216,6 @@ public final class Venta extends javax.swing.JFrame {
         jLabel10.setText("Precio de venta:");
 
         textPrecioVenta.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        textPrecioVenta.setText("787");
         textPrecioVenta.setEnabled(false);
         textPrecioVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,17 +232,14 @@ public final class Venta extends javax.swing.JFrame {
 
         textNombreArticulo.setEditable(false);
         textNombreArticulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textNombreArticulo.setText("Nombre");
         textNombreArticulo.setEnabled(false);
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel11.setText("Articulo:");
 
         textCantidadCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textCantidadCliente.setText("1234");
 
         textCantidadAlmacen.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textCantidadAlmacen.setText("1234");
         textCantidadAlmacen.setEnabled(false);
 
         javax.swing.GroupLayout panelArticuloLayout = new javax.swing.GroupLayout(panelArticulo);
@@ -306,6 +309,11 @@ public final class Venta extends javax.swing.JFrame {
         btnEliminar.setText("Eliminar");
 
         btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelAccionesLayout = new javax.swing.GroupLayout(panelAcciones);
         panelAcciones.setLayout(panelAccionesLayout);
@@ -347,11 +355,11 @@ public final class Venta extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ProductoID", "Codigo", "Nombre", "Unidades", "Precio de venta", "Precio de compra", "CategoriaID", "SuplidorID"
+                "ClienteID", "NumFactura", "Fecha", "ArticuloID", "Cantidad", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -379,48 +387,15 @@ public final class Venta extends javax.swing.JFrame {
 
         panelBotonesPantalla.setBackground(new java.awt.Color(0, 51, 102));
 
-        jButton2.setBackground(new java.awt.Color(0, 51, 102));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Ventas realizadas");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setBackground(new java.awt.Color(0, 51, 102));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Generar factura");
-
-        jButton4.setBackground(new java.awt.Color(0, 51, 102));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Volver atras");
-
         javax.swing.GroupLayout panelBotonesPantallaLayout = new javax.swing.GroupLayout(panelBotonesPantalla);
         panelBotonesPantalla.setLayout(panelBotonesPantallaLayout);
         panelBotonesPantallaLayout.setHorizontalGroup(
             panelBotonesPantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBotonesPantallaLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(465, 465, 465)
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(440, 440, 440)
-                .addComponent(jButton2)
-                .addGap(50, 50, 50))
+            .addGap(0, 1448, Short.MAX_VALUE)
         );
         panelBotonesPantallaLayout.setVerticalGroup(
             panelBotonesPantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBotonesPantallaLayout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addGroup(panelBotonesPantallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26))
+            .addGap(0, 92, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
@@ -501,21 +476,41 @@ public final class Venta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void btnBuscarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarArticuloActionPerformed
-       DesplegarArticulos();
+        DesplegarArticulos();
     }//GEN-LAST:event_btnBuscarArticuloActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        DesplegarVentasCaja();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-       DesplegarVender();
+        asignarVentaID();
+        Program.setVentas(fecha, total);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void textCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCajaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textCajaActionPerformed
+
+    private void textNombreClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreClientActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNombreClientActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        if (!textNombreClient.getText().isEmpty() && !textNombreArticulo.getText().isEmpty() && !textCantidadCliente.getText().isEmpty()) {
+            try {
+                fecha = textFecha.getText();
+                numeroFactura = Integer.parseInt(textNumeroFactura.getText());
+                cantidadArticulo = Integer.parseInt(textCantidadCliente.getText());
+                precioVenta = Double.parseDouble(textPrecioVenta.getText());
+                total = cantidadArticulo * precioVenta;
+            }
+            catch(Exception e){
+               e.printStackTrace();
+            }
+            Program.setDetallesVentas(clienteID, fecha, numeroFactura, ProcuctoID, cantidadArticulo, precioVenta, total, ventaID);
+            jTable1.setModel(JtableModel.ModeloBuscarDetalleVenta());
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Debe seleccionar todos los campos", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -529,13 +524,9 @@ public final class Venta extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JPanel header;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
@@ -548,14 +539,13 @@ public final class Venta extends javax.swing.JFrame {
     private javax.swing.JPanel panelTable;
     private javax.swing.JPanel panelfactura;
     private javax.swing.JTextField textCaja;
-    private javax.swing.JTextField textCantidadAlmacen;
+    private static javax.swing.JTextField textCantidadAlmacen;
     private javax.swing.JTextField textCantidadCliente;
-    private javax.swing.JTextField textCodigoVenta1;
     private javax.swing.JTextField textFecha;
-    private javax.swing.JTextField textNombreArticulo;
-    private javax.swing.JTextField textNombreCliente;
-    private javax.swing.JTextField textNombreEmpleado;
-    private javax.swing.JTextField textPrecioVenta;
+    private static javax.swing.JTextField textNombreArticulo;
+    private static javax.swing.JTextField textNombreClient;
+    private javax.swing.JTextField textNumeroFactura;
+    private static javax.swing.JTextField textPrecioVenta;
     // End of variables declaration//GEN-END:variables
 
     public void DesplegarClientes() {
@@ -565,25 +555,31 @@ public final class Venta extends javax.swing.JFrame {
         clientes.setLocationRelativeTo(null);
     }
 
-    static void DesplegarVentasCaja() {
-        frmVentasPorCaja diarias = new frmVentasPorCaja();
-        diarias.pack();
-        diarias.setVisible(true);
-        diarias.setLocationRelativeTo(null);
-    }
-
     static void DesplegarArticulos() {
-        frmBuscarArticulo articulos = new frmBuscarArticulo();
-        articulos.pack();
-        articulos.setVisible(true);
-        articulos.setLocationRelativeTo(null);
-    }
-    
-    static void DesplegarVender(){
-        frmRealizarVenta articulos  =  new frmRealizarVenta();
+        frmAdministrarProductos articulos = new frmAdministrarProductos();
         articulos.pack();
         articulos.setVisible(true);
         articulos.setLocationRelativeTo(null);
     }
 
+    public static void asignarNombreCliente(String nombre, String id) {
+        textNombreClient.setText(nombre);
+        clienteID = Integer.parseInt(id);
+    }
+
+    public static void asignarDatosProductos(String[] datos) {
+        textNombreArticulo.setText(datos[2]);
+        textCantidadAlmacen.setText(datos[3]);
+        textPrecioVenta.setText(datos[4]);
+        ProcuctoID = Integer.parseInt(datos[0]);
+    }
+
+    public static String obtenerFechaFormateada() {
+        // Obtener la fecha actual
+        LocalDate fechaActual = LocalDate.now();
+
+        // Formatear la fecha como una cadena
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return fechaActual.format(formatoFecha);
+    }
 }

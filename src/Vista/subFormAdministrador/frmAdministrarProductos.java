@@ -6,19 +6,18 @@ package Vista.subFormAdministrador;
 
 import static Modelo.Categorias.getIDCategorias;
 import Modelo.JtableModel;
-import static Modelo.JtableModel.ModeloBuscarCajaFiltro;
 import static Modelo.JtableModel.ModeloBuscarProductoFiltro;
 import static Modelo.JtableModel.ModeloNuevoProducto;
-import static Modelo.Program.deleteCaja;
 import static Modelo.Program.deleteProducto;
 import javax.swing.JOptionPane;
 import static Modelo.Program.setProductos;
-import static Modelo.Program.updateCaja;
 import static Modelo.Program.updateProducto;
 import static Modelo.Suplidores.getIDSuplidores;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import static Modelo.Program.VerificarCodigoCuenta;
+import Vista.subFormCaja.Venta;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -33,6 +32,7 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
     private int SuplidorID;
     private String nombre;
     private Object valorFila;
+    static String[] datosdeSeleccion = new String[8];
 
     /**
      * Creates new form frmAdministrarProductos
@@ -41,6 +41,7 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
         initComponents();
         asiganarCategorias();
         asiganarSuplidores();
+        seleccionarInf();
     }
 
     /**
@@ -461,6 +462,23 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
                 jTable1.setValueAt(jComboBoxSuplidores.getSelectedItem(), 0, 7);
             }
         });
+    }
+    
+    private void seleccionarInf() {
+
+        jTable1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    for(int i = 0; i< datosdeSeleccion.length; i++){
+                        datosdeSeleccion[i] = jTable1.getValueAt(jTable1.getSelectedRow(), i).toString();
+                    }
+                    Venta.asignarDatosProductos(datosdeSeleccion);
+                }
+            }
+        });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

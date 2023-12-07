@@ -13,12 +13,14 @@ import java.util.ArrayList;
 public class Program {
 
     private static final ArrayList<Cajas> cajas = new ArrayList<>();
-    private static ArrayList<Suplidores> proveedores = new ArrayList<Suplidores>();
-    private static ArrayList<Categorias> categorias = new ArrayList<Categorias>();
+    private static ArrayList<Suplidores> proveedores = new ArrayList<>();
+    private static ArrayList<Categorias> categorias = new ArrayList<>();
     private static final ArrayList<Productos> productos = new ArrayList<>();
-    private static ArrayList<Clientes> clientes = new ArrayList<Clientes>();
-    private static ArrayList<Gastos> gastos = new ArrayList<Gastos>();
-    private static ArrayList<Cuentas_Pagar> cuentas = new ArrayList<Cuentas_Pagar>();
+    private static ArrayList<Clientes> clientes = new ArrayList<>();
+    private static ArrayList<Gastos> gastos = new ArrayList<>();
+    private static ArrayList<Cuentas_Pagar> cuentas = new ArrayList<>();
+    private static ArrayList<DetalleVenta> detallesVentas = new ArrayList<>();
+    private static ArrayList<Ventas> ventas = new ArrayList<>();
 
     public static void setCajas(int num) {
         cajas.add(new Cajas(num));
@@ -269,6 +271,14 @@ public class Program {
         Double Total = Double.parseDouble(fila[3]);
 
         Ingresos.updateIngreso(id, Descripcion, Fecha, Total);
+    }
+    
+    public static void setDetallesVentas(int ClienteID, String fecha, int numeroFactura, int ProductoID, int cantidadArticulo, double precioVenta, double total, int ventaID){
+        detallesVentas.add(new DetalleVenta(ClienteID,fecha,numeroFactura,ProductoID,cantidadArticulo,precioVenta,total, ventaID));
+    }
+    
+    public static void  setVentas(String fecha, double total){
+        ventas.add(new Ventas(fecha,total));
     }
 
 }
