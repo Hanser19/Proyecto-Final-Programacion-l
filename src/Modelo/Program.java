@@ -17,6 +17,8 @@ public class Program {
     private static ArrayList<Categorias> categorias = new ArrayList<Categorias>();
     private static final ArrayList<Productos> productos = new ArrayList<>();
     private static ArrayList<Clientes> clientes = new ArrayList<Clientes>();
+    private static ArrayList<Gastos> gastos = new ArrayList<Gastos>();
+    private static ArrayList<Cuentas_Pagar> cuentas = new ArrayList<Cuentas_Pagar>();
 
     public static void setCajas(int num) {
         cajas.add(new Cajas(num));
@@ -46,7 +48,7 @@ public class Program {
         productos.add(new Productos(codigo, nombre, precioVenta, precioCompra, categoria, suplidor));
     }
 
-    public static boolean VerificarCodigoProducto(int num) {
+    public static boolean VerificarCodigoCuenta(int num) {
         for (int i : Productos.getCodigoProducto()) {
             if (i == num) {
                 return false;
@@ -179,4 +181,94 @@ public class Program {
         String rol = fila[3];
         Usuarios.update(id, user, contra, rol);
     }
+
+    public static void setGastos(String descripcion, String fecha, Double total) {
+        gastos.add(new Gastos(descripcion, fecha, total));
+    }
+
+    public static boolean VerificarIdGasto(int GastoID) {
+        ArrayList<Integer> Gasto_IDs = Clientes.getIdClientes();
+        for (int i : Gasto_IDs) {
+            if (i == GastoID) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void deleteGasto(String[] fila) {
+        int id = Integer.parseInt(fila[0]);
+        Gastos.Delete(id);
+    }
+
+    public static void updateGasto(String[] fila) {
+        int id = Integer.parseInt(fila[0]);
+        String Descripcion = fila[1];
+        String Fecha = fila[2];
+        Double Total = Double.parseDouble(fila[3]);
+        Gastos.update(id, Descripcion, Fecha, Total);
+    }
+
+    public static void setCuentas(String descripcion, double saldo, String fechaLimt, String estado, int suplidor, int gasto) {
+        cuentas.add(new Cuentas_Pagar(descripcion, saldo, fechaLimt, estado, suplidor, gasto));
+    }
+
+    public static boolean VerificarIdCuenta(int CuentaID) {
+        ArrayList<Integer> Cuentas_IDs = Clientes.getIdClientes();
+        for (int i : Cuentas_IDs) {
+            if (i == CuentaID) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void deleteCuenta(String[] fila) {
+        int id = Integer.parseInt(fila[0]);
+        Cuentas_Pagar.Delete(id);
+    }
+
+    public static void updateCuenta(String[] fila) {
+        int id = Integer.parseInt(fila[0]);
+        String descripcion = fila[1];
+        double saldo = Double.parseDouble(fila[2]);
+        String fechaLimt = fila[3];
+        String estado = fila[4];
+        int suplidor = Integer.parseInt(fila[5]);
+        int gasto = Integer.parseInt(fila[6]);
+
+        Cuentas_Pagar.update(id, descripcion, saldo, fechaLimt, estado, suplidor, gasto);
+    }
+
+    private static ArrayList<Ingresos> ingresos = new ArrayList<Ingresos>();
+
+    public static void setIngresos(String Ing_Descripcion, String Ing_Fecha, Double Ing_Total) {
+        ingresos.add(new Ingresos(Ing_Descripcion, Ing_Fecha, Ing_Total));
+    }
+
+    public static boolean VerificarIdIngreso(int IngresoID) {
+        ArrayList<Integer> Ingreso_IDs = Ingresos.getIDIngresos();
+        for (int i : Ingreso_IDs) {
+            if (i == IngresoID) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void deleteIngreso(String[] fila) {
+        int id = Integer.parseInt(fila[0]);
+        // Asumiendo que tienes un método deleteIngreso en la clase Ingresos
+        Ingresos.deleteIngreso(id);
+    }
+
+    public static void updateIngreso(String[] fila) {
+        int id = Integer.parseInt(fila[0]);
+        String Descripcion = fila[1];
+        String Fecha = fila[2];
+        Double Total = Double.parseDouble(fila[3]);
+
+        Ingresos.updateIngreso(id, Descripcion, Fecha, Total);
+    }
+
 }

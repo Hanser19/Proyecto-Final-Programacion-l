@@ -6,6 +6,7 @@ package Vista.subFormAdministrador;
 
 import Modelo.JtableModel;
 import static Modelo.JtableModel.ModeloBuscarClienteFiltro;
+import static Modelo.JtableModel.ModeloNuevoCliente;
 import static Modelo.Program.VerificarIdCliente;
 import static Modelo.Program.deleteCliente;
 import static Modelo.Program.setClientes;
@@ -259,8 +260,7 @@ public class frmAdministrarClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarClientesActionPerformed
 
     private void textBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textBuscarActionPerformed
+            }//GEN-LAST:event_textBuscarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
@@ -290,8 +290,13 @@ public class frmAdministrarClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jTableClientes.setValueAt(null, 0, 0);
-        jTableClientes.setModel(JtableModel.ModeloNuevoCliente());
+        int columnas = jTableClientes.getColumnCount();
+
+        for (int i = 0; i < columnas; i++) {
+
+            jTableClientes.setValueAt("", 0, i);
+            jTableClientes.setModel(ModeloNuevoCliente());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

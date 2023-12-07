@@ -232,5 +232,4 @@ public class Productos extends ConexionSQL {
             close(getConection(), stm);
         }
     }
-
 }

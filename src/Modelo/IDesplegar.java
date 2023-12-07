@@ -20,4 +20,5 @@ public interface IDesplegar {
     void DesplegarIngresos();
     void DesplegarGastos();
     void DesplegarBalanceGeneral();
+    void DesplegarCuentasPagar();
 }

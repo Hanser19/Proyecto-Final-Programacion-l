@@ -2,44 +2,40 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Vista.subFormAdministrador;
+package Vista.subFormContabilidad;
 
-import static Modelo.Categorias.getIDCategorias;
+import static Modelo.Gastos.getIdGastos;
 import Modelo.JtableModel;
-import static Modelo.JtableModel.ModeloBuscarCajaFiltro;
-import static Modelo.JtableModel.ModeloBuscarProductoFiltro;
-import static Modelo.JtableModel.ModeloNuevoProducto;
-import static Modelo.Program.deleteCaja;
-import static Modelo.Program.deleteProducto;
+import static Modelo.JtableModel.ModeloBuscarCuentaFiltro;
+import static Modelo.JtableModel.ModeloNuevoCuenta;
+import static Modelo.Program.VerificarIdCuenta;
 import javax.swing.JOptionPane;
-import static Modelo.Program.setProductos;
-import static Modelo.Program.updateCaja;
-import static Modelo.Program.updateProducto;
 import static Modelo.Suplidores.getIDSuplidores;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import static Modelo.Program.VerificarCodigoCuenta;
+import static Modelo.Program.deleteCuenta;
+import static Modelo.Program.setCuentas;
+import static Modelo.Program.updateCuenta;
 
 /**
  *
  * @author Hanser Perez
  */
-public class frmAdministrarProductos extends javax.swing.JFrame {
+public class frmCuentasP extends javax.swing.JFrame {
 
-    private int codigo;
-    private double precioVenta;
-    private double precioCompra;
-    private int categoriaID;
+    private String FechaLimt;
+    private double Saldo;
+    private String Estado;
     private int SuplidorID;
-    private String nombre;
+    private int GastoID;
+    private String Descripcion;
     private Object valorFila;
 
     /**
      * Creates new form frmAdministrarProductos
      */
-    public frmAdministrarProductos() {
+    public frmCuentasP() {
         initComponents();
-        asiganarCategorias();
+        asiganarGastos();
         asiganarSuplidores();
     }
 
@@ -63,9 +59,10 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
         txtBuscar2 = new javax.swing.JTextField();
         jButton11 = new javax.swing.JButton();
         jComboBoxBuscar = new javax.swing.JComboBox<>();
+        jButton12 = new javax.swing.JButton();
         jPanelCentral = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableCuentasP = new javax.swing.JTable();
         jPanelInferior = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -95,7 +92,7 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
 
         lblAdministrarProducto2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblAdministrarProducto2.setForeground(new java.awt.Color(255, 255, 255));
-        lblAdministrarProducto2.setText("Administrar Productos");
+        lblAdministrarProducto2.setText("Cuentas por Pagar");
 
         txtBuscar2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -108,7 +105,16 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
         });
 
         jComboBoxBuscar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jComboBoxBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id", "Codigo" }));
+        jComboBoxBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id" }));
+
+        jButton12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton12.setForeground(new java.awt.Color(0, 0, 102));
+        jButton12.setText("<---Volver Atras");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelSuperior2Layout = new javax.swing.GroupLayout(jPanelSuperior2);
         jPanelSuperior2.setLayout(jPanelSuperior2Layout);
@@ -123,7 +129,9 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
                 .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSuperior2Layout.createSequentialGroup()
-                .addContainerGap(292, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jButton12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblAdministrarProducto2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(254, 254, 254))
         );
@@ -131,7 +139,9 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
             jPanelSuperior2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelSuperior2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblAdministrarProducto2)
+                .addGroup(jPanelSuperior2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAdministrarProducto2)
+                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanelSuperior2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBuscar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,12 +150,12 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCuentasP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "Nombre", "Precio de venta", "Precio de compra", "CategoriaID", "SuplidorID"
+                "Descripcion", "Saldo", "Fecha Limite", "Estado", "SuplidorID", "GastoID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -156,7 +166,7 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableCuentasP);
 
         javax.swing.GroupLayout jPanelCentralLayout = new javax.swing.GroupLayout(jPanelCentral);
         jPanelCentral.setLayout(jPanelCentralLayout);
@@ -230,7 +240,7 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Categoria:");
+        jLabel1.setText("Gastos:");
 
         jComboBoxSuplidores.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jComboBoxSuplidores.addActionListener(new java.awt.event.ActionListener() {
@@ -332,117 +342,110 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         for (int i = 0; i < 6; i++) {
-            jTable1.setValueAt("", 0, i);
-            jTable1.setModel(ModeloNuevoProducto());
+            jTableCuentasP.setValueAt("", 0, i);
+            jTableCuentasP.setModel(ModeloNuevoCuenta());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (jTable1.getColumnCount() == 6) {
-            if (jTable1.getValueAt(0, 0) != null
-                    && jTable1.getValueAt(0, 1) != null
-                    && jTable1.getValueAt(0, 2) != null
-                    && jTable1.getValueAt(0, 3) != null
-                    && jTable1.getValueAt(0, 4) != null
-                    && jTable1.getValueAt(0, 5) != null) {
+        try {
+            int filas = jTableCuentasP.getRowCount();
 
-                try {
-                    codigo = Integer.parseInt(jTable1.getValueAt(0, 0).toString());
-                    nombre = jTable1.getValueAt(0, 1).toString();
-                    precioVenta = Double.parseDouble(jTable1.getValueAt(0, 2).toString());
-                    precioCompra = Double.parseDouble(jTable1.getValueAt(0, 3).toString());
-                    categoriaID = Integer.parseInt(jTable1.getValueAt(0, 4).toString());
-                    SuplidorID = Integer.parseInt(jTable1.getValueAt(0, 5).toString());
+            for (int i = 0; i < filas; i++) {
+                int CuentaID = i;
+                Descripcion = jTableCuentasP.getValueAt(0, 0).toString();
+                Saldo = Double.parseDouble(jTableCuentasP.getValueAt(0, 1).toString());
+                FechaLimt = jTableCuentasP.getValueAt(0, 2).toString();
+                Estado = jTableCuentasP.getValueAt(0, 3).toString();
+                SuplidorID = Integer.parseInt(jTableCuentasP.getValueAt(0, 4).toString());
+                GastoID = Integer.parseInt(jTableCuentasP.getValueAt(0, 5).toString());
 
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(this, "Ingresa correctamente los datos", "Alerta", JOptionPane.INFORMATION_MESSAGE);
-                }
-
-                if (VerificarCodigoCuenta(obtenerCodigoProducto())) {
-                    setProductos(codigo, nombre, precioVenta, precioCompra, categoriaID, SuplidorID);
-                    JOptionPane.showMessageDialog(this, "Producto agregado correctamente", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+                if (Descripcion.isEmpty() || jTableCuentasP.getValueAt(i, 1) == null || FechaLimt.isEmpty() || Estado.isEmpty() || jTableCuentasP.getValueAt(i, 4) == null || jTableCuentasP.getValueAt(i, 4) == null) {
+                    JOptionPane.showMessageDialog(this, "ERROR: Uno o más campos están vacíos en la fila " + (i + 1));
+                } else if (VerificarIdCuenta(CuentaID)) {
+                    setCuentas(Descripcion, Saldo, FechaLimt, Estado, SuplidorID, GastoID);
+                    JOptionPane.showMessageDialog(this, "Se agregó el cliente correctamente.");
                 } else {
-                    JOptionPane.showMessageDialog(this, "EL producto ya exciste", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "El cliente ya existe.");
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "Ingresar los datos del producto", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             }
-        } else
-            JOptionPane.showMessageDialog(this, "Debes primero precionar el boton de nuevo", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "ERROR: Uno o más campos están vacíos en la fila.");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+
         String filtro = txtBuscar2.getText();
         int numero = 0;
         /*filtro para buscar por filtro o general*/
         if (filtro.isEmpty()) {
-            jTable1.setModel(JtableModel.ModeloBuscarProducto());
+            jTableCuentasP.setModel(JtableModel.ModeloBuscarCuentas());
         } else {
             try {
                 numero = Integer.parseInt(txtBuscar2.getText());
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Ingresar un valor valido", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             }
-            jTable1.setModel(ModeloBuscarProductoFiltro(numero, jComboBoxBuscar.getSelectedIndex()));
+            jTableCuentasP.setModel(ModeloBuscarCuentaFiltro(numero, jComboBoxBuscar.getSelectedIndex()));
         }
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String[] filaSeleccionada = new String[8];
-        if (jTable1.getColumnCount() == 8) {
-            if (jTable1.getSelectedRow() != -1) {
+        String[] filaSeleccionada = new String[7];
+        if (jTableCuentasP.getColumnCount() == 7) {
+            if (jTableCuentasP.getSelectedRow() != -1) {
                 for (int i = 0; i < filaSeleccionada.length; i++) {
-                    valorFila = jTable1.getValueAt(jTable1.getSelectedRow(), i);
+                    valorFila = jTableCuentasP.getValueAt(jTableCuentasP.getSelectedRow(), i);
                     filaSeleccionada[i] = (valorFila != null) ? valorFila.toString() : "";
                 }
-                deleteProducto(filaSeleccionada);
-                JOptionPane.showMessageDialog(this, "Producto eliminado correctamente", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+                deleteCuenta(filaSeleccionada);
+                JOptionPane.showMessageDialog(this, "Cuenta eliminada correctamente", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "primero debes seleccionar una caja", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Primero debes seleccionar una cuenta", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             }
         } else
-            JOptionPane.showMessageDialog(this, "primero debes buscar la caja a eliminar", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Primero debes buscar la cuenta a eliminar", "Alerta", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
 
-        String[] filaSeleccionada = new String[8];
-        if (jTable1.getRowCount() == 1 && jTable1.getColumnCount() == 8) {
-            if (jTable1.getSelectedRow() != -1) {
+        String[] filaSeleccionada = new String[7];
+        if (jTableCuentasP.getRowCount() == 1 && jTableCuentasP.getColumnCount() == 7) {
+            if (jTableCuentasP.getSelectedRow() != -1) {
                 for (int i = 0; i < filaSeleccionada.length; i++) {
-                    valorFila = jTable1.getValueAt(jTable1.getSelectedRow(), i);
+                    valorFila = jTableCuentasP.getValueAt(jTableCuentasP.getSelectedRow(), i);
                     filaSeleccionada[i] = (valorFila != null) ? valorFila.toString() : "";
                 }
-                updateProducto(filaSeleccionada);
-                JOptionPane.showMessageDialog(this, "Producto actualizado correctamente", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+                updateCuenta(filaSeleccionada);
+                JOptionPane.showMessageDialog(this, "Cuenta actualizada correctamente", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "primero debes seleccionar un producto", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Primero debes seleccionar una cuenta", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             }
         } else
-            JOptionPane.showMessageDialog(this, "Primero debes buscar el producto para actualizar", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Primero debes buscar la cuenta para actualizar", "Alerta", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private int obtenerCodigoProducto() {
-        int num = 0;
-        try {
-            num = Integer.parseInt(jTable1.getValueAt(0, 0).toString());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Ingresar un valor valido", "Problemas de conversion", JOptionPane.INFORMATION_MESSAGE);
-        }
-        return num;
-    }
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        frmGastos gastos = new frmGastos();
+        gastos.pack();
+        gastos.setVisible(true);
+        gastos.setLocationRelativeTo(null);
+        dispose();
+    }//GEN-LAST:event_jButton12ActionPerformed
 
-    private void asiganarCategorias() {
+    private void asiganarGastos() {
 
-        for (int i : getIDCategorias()) {
+        for (int i : getIdGastos()) {
             jComboBoxCategorias.addItem(String.valueOf(i));
         }
 
         jComboBoxCategorias.addActionListener((ActionEvent e) -> {
-            if (jTable1.getColumnCount() == 6) {
-                jTable1.setValueAt(jComboBoxCategorias.getSelectedItem(), 0, 4);
+            if (jTableCuentasP.getColumnCount() == 6) {
+                jTableCuentasP.setValueAt(jComboBoxCategorias.getSelectedItem(), 0, 5);
             } else {
-                jTable1.setValueAt(jComboBoxCategorias.getSelectedItem(), 0, 6);
+                jTableCuentasP.setValueAt(jComboBoxCategorias.getSelectedItem(), 0, 6);
             }
         });
 
@@ -455,10 +458,10 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
         }
 
         jComboBoxSuplidores.addActionListener((ActionEvent e) -> {
-            if (jTable1.getColumnCount() == 6) {
-                jTable1.setValueAt(jComboBoxSuplidores.getSelectedItem(), 0, 5);
+            if (jTableCuentasP.getColumnCount() == 6) {
+                jTableCuentasP.setValueAt(jComboBoxSuplidores.getSelectedItem(), 0, 4);
             } else {
-                jTable1.setValueAt(jComboBoxSuplidores.getSelectedItem(), 0, 7);
+                jTableCuentasP.setValueAt(jComboBoxSuplidores.getSelectedItem(), 0, 5);
             }
         });
     }
@@ -468,6 +471,7 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
@@ -485,7 +489,7 @@ public class frmAdministrarProductos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelPrincipal2;
     private javax.swing.JPanel jPanelSuperior2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableCuentasP;
     private javax.swing.JLabel lblAdministrarProducto2;
     private javax.swing.JTextField txtBuscar2;
     // End of variables declaration//GEN-END:variables

@@ -188,4 +188,23 @@ public final class Cajas extends ConexionSQL {
             System.out.println("Caja Actualizada correctamente correctamente");
         }
     }
+    public static ArrayList<Integer> getIdCajas() {
+
+        ArrayList<Integer> id = new ArrayList<>();
+        query = "SELECT CajaID FROM Cajas";
+
+        try {
+            stm = getConection().prepareStatement(query);
+            resultSet = stm.executeQuery();
+
+            while (resultSet.next()) {
+                id.add(resultSet.getInt("CajaID"));
+            }
+        } catch (SQLException e) {
+        } finally {
+            close(getConection(), stm);
+        }
+
+        return id;
+    }
 }

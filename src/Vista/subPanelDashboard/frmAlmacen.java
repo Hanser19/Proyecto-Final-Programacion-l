@@ -258,4 +258,9 @@ public class frmAlmacen extends javax.swing.JPanel implements IDesplegar {
     public void DesplegarBalanceGeneral() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public void DesplegarCuentasPagar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

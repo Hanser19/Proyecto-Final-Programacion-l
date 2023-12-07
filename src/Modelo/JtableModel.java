@@ -268,4 +268,136 @@ public class JtableModel {
         return modelo;
     }
 
+    public static DefaultTableModel ModeloBuscarGastos() {
+
+        modelo = new DefaultTableModel();
+
+        modelo.addColumn("ID");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Total");
+
+        for (String[] i : Gastos.select()) {
+            modelo.addRow(i);
+        }
+
+        return modelo;
+    }
+
+    public static DefaultTableModel ModeloNuevoGasto() {
+
+        modelo = new DefaultTableModel();
+
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Total");
+        modelo.addRow(new Object[]{});
+
+        return modelo;
+    }
+
+    public static DefaultTableModel ModeloBuscarGastoFiltro(int numero, int index) {
+        modelo = new DefaultTableModel();
+
+        modelo.addColumn("ID");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Total");
+
+        modelo.addRow(Gastos.getGastoPorFiltro(numero, index));
+
+        return modelo;
+    }
+
+    public static DefaultTableModel ModeloBuscarCuentas() {
+
+        modelo = new DefaultTableModel();
+
+        modelo.addColumn("ID");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Saldo");
+        modelo.addColumn("Fecha Limite");
+        modelo.addColumn("Estado");
+        modelo.addColumn("SuplidorId");
+        modelo.addColumn("GastoId");
+
+        for (String[] i : Cuentas_Pagar.select()) {
+            modelo.addRow(i);
+        }
+
+        return modelo;
+    }
+
+    public static DefaultTableModel ModeloNuevoCuenta() {
+
+        modelo = new DefaultTableModel();
+
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Saldo");
+        modelo.addColumn("Fecha Limite");
+        modelo.addColumn("Estado");
+        modelo.addColumn("SuplidorId");
+        modelo.addColumn("GastoId");
+        modelo.addRow(new Object[]{});
+
+        return modelo;
+    }
+
+    public static DefaultTableModel ModeloBuscarCuentaFiltro(int numero, int index) {
+        modelo = new DefaultTableModel();
+
+        modelo.addColumn("ID");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Saldo");
+        modelo.addColumn("Fecha Limite");
+        modelo.addColumn("Estado");
+        modelo.addColumn("SuplidorId");
+        modelo.addColumn("GastoId");
+
+        modelo.addRow(Cuentas_Pagar.getCuentaPorFiltro(numero, index));
+
+        return modelo;
+    }
+
+    public static DefaultTableModel ModeloNuevoIngreso() {
+
+        modelo = new DefaultTableModel();
+
+        modelo.addColumn("Descripción");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Total");
+
+        // Añadir una fila vacía para permitir la edición
+        modelo.addRow(new Object[]{});
+
+        return modelo;
+    }
+
+    public static DefaultTableModel ModeloBuscarIngresoFiltro(int id, int index) {
+        modelo = new DefaultTableModel();
+
+        modelo.addColumn("ID");
+        modelo.addColumn("Descripción");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Total");
+
+        modelo.addRow(Ingresos.getIngresoPorFiltro(id, index));
+
+        return modelo;
+    }
+
+    public static DefaultTableModel ModeloBuscarIngresos() {
+        modelo = new DefaultTableModel();
+
+        modelo.addColumn("ID");
+        modelo.addColumn("Descripción");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Total");
+
+        for (String[] i : Ingresos.selectIngresos()) {
+            modelo.addRow(i);
+        }
+
+        return modelo;
+    }
 }

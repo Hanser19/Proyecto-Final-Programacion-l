@@ -235,5 +235,4 @@ public class Clientes extends ConexionSQL {
             System.out.println("Se actualizo el cliente correctamente.");
         }
     }
-
 }

@@ -4,18 +4,21 @@
  */
 package Vista.subPanelDashboard;
 
-import Modelo.IDesplegar;
+import static Modelo.Cajas.getIdCajas;
 import Vista.subFormCaja.Venta;
+import java.awt.event.ActionEvent;
 
 /**
  *
  * @author Juan Manuel
  */
-public class frmCaja extends javax.swing.JPanel implements IDesplegar{
-
+public class frmCaja extends javax.swing.JPanel {
+    private static String cajaIdSeleccionado;
+    
     public frmCaja() {
         initComponents();
-        codigo();
+        asignarIdComboBoxCaja();
+        Code();
     }
 
     /**
@@ -57,7 +60,6 @@ public class frmCaja extends javax.swing.JPanel implements IDesplegar{
         jComboBoxCajas.setBackground(new java.awt.Color(221, 221, 221));
         jComboBoxCajas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jComboBoxCajas.setForeground(new java.awt.Color(102, 102, 102));
-        jComboBoxCajas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxCajas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCajasActionPerformed(evt);
@@ -90,7 +92,22 @@ public class frmCaja extends javax.swing.JPanel implements IDesplegar{
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCajasActionPerformed
     
-    private void codigo(){
+    private void asignarIdComboBoxCaja(){
+        for(int i: getIdCajas()){
+            jComboBoxCajas.addItem(String.valueOf(i));
+        }
+    }
+    
+    public static String getCajaIdSeleccionado(){
+        return cajaIdSeleccionado;
+    }
+    
+    private void Code(){
+        
+        jComboBoxCajas.addActionListener((ActionEvent e) -> {
+            cajaIdSeleccionado = jComboBoxCajas.getSelectedItem().toString();
+        });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -101,61 +118,6 @@ public class frmCaja extends javax.swing.JPanel implements IDesplegar{
     private javax.swing.JLabel lblClave;
     private javax.swing.JTextField txtContraseña;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void DesplegarProductos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void DesplegarCategorias() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void DesplegarUsuarios() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void DesplegarProveedores() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void DesplegarClientes() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void DesplegarCajas() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void DesplegarConsultas() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void DesplegarCompra() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void DesplegarIngresos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void DesplegarGastos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void DesplegarBalanceGeneral() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
 }
 

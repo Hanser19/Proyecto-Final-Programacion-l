@@ -6,8 +6,8 @@ package Vista.subPanelDashboard;
 
 import Modelo.IDesplegar;
 import Vista.subFormContabilidad.BalanceGeneral;
-import Vista.subFormGastos.frmGastos;
-import Vista.subFormGastos.frmIngresos;
+import Vista.subFormContabilidad.frmGastos;
+import Vista.subFormContabilidad.frmIngresos;
 
 /**
  *
@@ -259,6 +259,11 @@ public class frmContabilidad extends javax.swing.JPanel implements IDesplegar {
         balance.pack();
         balance.setVisible(true);
         balance.setLocationRelativeTo(null);
+    }
+
+    @Override
+    public void DesplegarCuentasPagar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
