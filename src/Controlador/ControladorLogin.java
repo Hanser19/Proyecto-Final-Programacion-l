@@ -9,6 +9,7 @@ import Modelo.Usuarios;
 import javax.swing.JOptionPane;
 import Vista.frmRegistroUsuario;
 import Vista.frmLogin;
+import javax.swing.JFrame;
 
 /**
  *
@@ -17,6 +18,7 @@ import Vista.frmLogin;
 public class ControladorLogin {
 
     private final UsuarioDAO usuarioDAO;
+    private boolean inicioSesionExitoso = false;
 
     public ControladorLogin() {
         this.usuarioDAO = new UsuarioDAO();
@@ -33,11 +35,15 @@ public class ControladorLogin {
         if (usuarioDAO.IniciarSesion(mod)) {
 
             JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
-            
             new PantallaCarga.frmPantallaCarga(null, true).setVisible(true);
+            inicioSesionExitoso = true;
 
         } else {
             JOptionPane.showMessageDialog(null, "Error al iniciar sesión. Verifica tus credenciales");
         }
+    }
+
+    public boolean inicioSesionExitoso() {
+        return inicioSesionExitoso;
     }
 }

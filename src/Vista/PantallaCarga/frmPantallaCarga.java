@@ -133,7 +133,7 @@ public class frmPantallaCarga extends javax.swing.JDialog {
 
     private void doTask(String taskName, int progress) throws Exception {
         lblEstado.setText(taskName);
-        Thread.sleep(250);
+        Thread.sleep(150);
         barraProgreso.setValue(progress);
     }
 

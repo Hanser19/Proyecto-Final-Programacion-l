@@ -335,8 +335,8 @@ public class frmDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdministradorActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
+        dispose();
+        DesplegarLogin();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnContabilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContabilidadActionPerformed
@@ -381,7 +381,7 @@ public class frmDashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmDashboard().setVisible(true);
+                new frmLogin().setVisible(true);
             }
         });
     }
@@ -459,6 +459,13 @@ public class frmDashboard extends javax.swing.JFrame {
         jPanelCentral.add(administrador, BorderLayout.CENTER);
         jPanelCentral.revalidate();
         jPanelCentral.repaint();
+    }
+
+    public void DesplegarLogin() {
+        frmLogin login = new frmLogin();
+        login.pack();
+        login.setVisible(true);
+        login.setLocationRelativeTo(null);
     }
 
 }

@@ -188,8 +188,11 @@ public class frmLogin extends javax.swing.JFrame {
         char[] contrasena = txtContraseña.getPassword();
 
         loginController.IniciarSesion(usuario, contrasena);
-        
-        this.dispose();
+
+        if (loginController.inicioSesionExitoso()) {
+            dispose(); // Cierra el formulario de inicio de sesión actual
+        }
+
     }//GEN-LAST:event_btnAccederActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
