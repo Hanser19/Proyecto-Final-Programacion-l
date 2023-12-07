@@ -1,4 +1,5 @@
 package Vista.SubFormAlmacen;
+import Vista.subFormCaja.panelNuevoCliente;
 
 /**
  *
@@ -291,7 +292,12 @@ public class frmCategAlmacen extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        panelNuevoCliente panel = new panelNuevoCliente();
 
+        panelTable.removeAll();
+        panelTable.add(panel);
+        panelTable.revalidate();
+        panelTable.repaint();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
 

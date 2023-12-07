@@ -1,4 +1,5 @@
 package Vista.SubFormAlmacen;
+import Vista.subFormCaja.panelNuevoCliente;
 
 
 /**
