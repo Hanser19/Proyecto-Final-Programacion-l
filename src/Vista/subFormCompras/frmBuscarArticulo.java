@@ -1,29 +1,35 @@
 package Vista.subFormCompras;
 
+import Modelo.JtableModel;
+import static Modelo.JtableModel.ModeloBuscarProductoFiltro;
+import Vista.subFormCaja.Venta;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
-
 /**
  *
  * @author Juan Manuel
  */
 public class frmBuscarArticulo extends javax.swing.JFrame {
 
+    static String[] datosdeSeleccion = new String[8];
+
     /**
      * Creates new form frmBuscarCliente
      */
-    
-    public frmBuscarArticulo(){
-        initComponents(); 
+    public frmBuscarArticulo() {
+        initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        seleccionarInf();
     }
 
     /**
@@ -287,7 +293,19 @@ public class frmBuscarArticulo extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String filtro = jTextField1.getText();
+        int numero = 0;
+        /*filtro para buscar por filtro o general*/
+        if (filtro.isEmpty()) {
+            jTable2.setModel(JtableModel.ModeloBuscarProducto());
+        } else {
+            try {
+                numero = Integer.parseInt(jTextField1.getText());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Ingresar un valor valido", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            }
+            jTable2.setModel(ModeloBuscarProductoFiltro(numero, jComboBox1.getSelectedIndex()));
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -303,4 +321,23 @@ public class frmBuscarArticulo extends javax.swing.JFrame {
     private javax.swing.JPanel panelbotonAgregar;
     private javax.swing.JPanel panelbuscarCliente;
     // End of variables declaration//GEN-END:variables
+
+    private void seleccionarInf() {
+
+        jTable2.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    for (int i = 0; i < datosdeSeleccion.length; i++) {
+                        datosdeSeleccion[i] = jTable2.getValueAt(jTable2.getSelectedRow(), i).toString();
+                    }
+                    Compra.asignarNombreProducto(datosdeSeleccion[2]);
+                    Compra.asignarPrecioCompra(datosdeSeleccion[5]);
+                }
+            }
+        });
+
+    }
+
 }

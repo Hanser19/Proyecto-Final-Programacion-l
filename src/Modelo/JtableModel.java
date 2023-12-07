@@ -417,4 +417,48 @@ public class JtableModel {
 
         return modelo;
     }
+    
+    public static DefaultTableModel ModeloNuevaCompra() {
+        modelo = new DefaultTableModel();
+
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Proveedor");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Articulo");
+        modelo.addColumn("Cantidad");
+        modelo.addColumn("Precio de Compra");
+
+        return modelo;
+    }
+    
+    public static DefaultTableModel ModeloBuscarDetalleCompra() {
+
+        modelo = new DefaultTableModel();
+        
+        modelo.addColumn("Proveedor");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Articulo");
+        modelo.addColumn("Cantidad");
+        modelo.addColumn("Precio de Compra");
+
+        for (String[] i : DetallesCompra.select()) {
+            modelo.addRow(i);
+        }
+
+        return modelo;
+    }
+    
+    public static DefaultTableModel ModeloNuevaVenta() {
+        modelo = new DefaultTableModel();
+
+        modelo.addColumn("ClienteID");
+        modelo.addColumn("NumFactura");
+        modelo.addColumn("Fehca");
+        modelo.addColumn("ArticuloID");
+        modelo.addColumn("Cantidad");
+        modelo.addColumn("Total");
+
+        return modelo;
+    }
+    
 }

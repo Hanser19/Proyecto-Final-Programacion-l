@@ -21,6 +21,8 @@ public class Program {
     private static ArrayList<Cuentas_Pagar> cuentas = new ArrayList<>();
     private static ArrayList<DetalleVenta> detallesVentas = new ArrayList<>();
     private static ArrayList<Ventas> ventas = new ArrayList<>();
+    private static ArrayList<DetallesCompra> detallesCompra = new ArrayList<>();
+    private static ArrayList<Compras> compras = new ArrayList<>();
 
     public static void setCajas(int num) {
         cajas.add(new Cajas(num));
@@ -272,13 +274,25 @@ public class Program {
 
         Ingresos.updateIngreso(id, Descripcion, Fecha, Total);
     }
-    
-    public static void setDetallesVentas(int ClienteID, String fecha, int numeroFactura, int ProductoID, int cantidadArticulo, double precioVenta, double total, int ventaID){
-        detallesVentas.add(new DetalleVenta(ClienteID,fecha,numeroFactura,ProductoID,cantidadArticulo,precioVenta,total, ventaID));
-    }
-    
-    public static void  setVentas(String fecha, double total){
-        ventas.add(new Ventas(fecha,total));
+
+    public static void setDetallesVentas(int ClienteID, String fecha, int numeroFactura, int ProductoID, int cantidadArticulo, double precioVenta, double total, int ventaID) {
+        detallesVentas.add(new DetalleVenta(ClienteID, fecha, numeroFactura, ProductoID, cantidadArticulo, precioVenta, total, ventaID));
     }
 
+    public static void setVentas(String fecha, double total) {
+        ventas.add(new Ventas(fecha, total));
+    }
+
+    public static void deleteDCompra(String[] fila) {
+        int id = Integer.parseInt(fila[0]);
+        DetallesCompra.Delete(id);
+    }
+
+    public static void setDetallesCompra(String suplidor, String fecha, String articulo, int cantidadArticulo, double precioVenta, int CompraID) {
+        detallesCompra.add(new DetallesCompra(suplidor, fecha, articulo, cantidadArticulo, precioVenta, CompraID));
+    }
+
+    public static void setCompras(String fecha, double total) {
+        compras.add(new Compras(fecha, total));
+    }
 }

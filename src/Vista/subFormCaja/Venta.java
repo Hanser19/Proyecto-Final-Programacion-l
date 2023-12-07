@@ -9,6 +9,7 @@ import Vista.subFormAdministrador.frmAdministrarProductos;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,11 +24,11 @@ public class Venta extends javax.swing.JFrame {
     private int cantidadArticulo;
     private double precioVenta;
     private double total;
-    private int ventaID =1;
-    
-    private static int contadorID=1;
-    
-    public void asignarVentaID(){
+    private int ventaID = 1;
+
+    private static int contadorID = 1;
+
+    public void asignarVentaID() {
         contadorID++;
         ventaID = contadorID;
     }
@@ -238,6 +239,11 @@ public class Venta extends javax.swing.JFrame {
         jLabel11.setText("Articulo:");
 
         textCantidadCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        textCantidadCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textCantidadClienteActionPerformed(evt);
+            }
+        });
 
         textCantidadAlmacen.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         textCantidadAlmacen.setEnabled(false);
@@ -291,6 +297,11 @@ public class Venta extends javax.swing.JFrame {
         panelAcciones.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Acciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
         btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -299,7 +310,7 @@ public class Venta extends javax.swing.JFrame {
             }
         });
 
-        btnGuardar.setText("Vender");
+        btnGuardar.setText("Ver");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -468,7 +479,8 @@ public class Venta extends javax.swing.JFrame {
     }//GEN-LAST:event_textPrecioVentaActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        limpiarTextFields();
+        limpiarTabla();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
@@ -480,8 +492,7 @@ public class Venta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarArticuloActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        asignarVentaID();
-        Program.setVentas(fecha, total);
+        jTable1.setModel(JtableModel.ModeloBuscarDetalleVenta());
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void textCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCajaActionPerformed
@@ -500,17 +511,23 @@ public class Venta extends javax.swing.JFrame {
                 cantidadArticulo = Integer.parseInt(textCantidadCliente.getText());
                 precioVenta = Double.parseDouble(textPrecioVenta.getText());
                 total = cantidadArticulo * precioVenta;
-            }
-            catch(Exception e){
-               e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             Program.setDetallesVentas(clienteID, fecha, numeroFactura, ProcuctoID, cantidadArticulo, precioVenta, total, ventaID);
             jTable1.setModel(JtableModel.ModeloBuscarDetalleVenta());
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar todos los campos", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void textCantidadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCantidadClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textCantidadClienteActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        limpiarTabla();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -581,5 +598,24 @@ public class Venta extends javax.swing.JFrame {
         // Formatear la fecha como una cadena
         DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return fechaActual.format(formatoFecha);
+    }
+
+    private void limpiarTabla() {
+        DefaultTableModel modelo = JtableModel.ModeloNuevaVenta();
+
+        if (modelo.getRowCount() > 0) {
+            jTable1.setValueAt(null, 0, 0);
+        } else {
+            // Aquí puedes manejar la lógica si el modelo está vacío, por ejemplo, agregar una nueva fila al modelo.
+            modelo.addRow(new Object[]{null, null, null}); // Ajusta los valores según tu modelo
+            jTable1.setModel(modelo);
+        }
+    }
+    
+    private void limpiarTextFields() {
+        // Limpiar los JTextField
+        textNombreClient.setText("");
+        textNombreArticulo.setText("");
+        textPrecioVenta.setText("");
     }
 }
